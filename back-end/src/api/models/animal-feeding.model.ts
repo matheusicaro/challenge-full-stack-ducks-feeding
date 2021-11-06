@@ -44,12 +44,12 @@ export class Feeding {
 
 export default class AnimalFeeding {
   private id: string;
-  private created_at: string;
+  private created_at: Date;
   private animal: Animal;
   private feeding: Feeding;
   private user: User;
 
-  constructor(id: string, createdAt: string, animal: Animal, feeding: Feeding, user: User) {
+  constructor(id: string, createdAt: Date, animal: Animal, feeding: Feeding, user: User) {
     this.id = id;
     this.created_at = createdAt;
     this.animal = animal;
