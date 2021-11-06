@@ -1,0 +1,517 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Rest API for Full Stack challenge Ducks Feeding.",
+    "version": "1.0.0",
+    "title": "animal-feeding-service",
+    "contact": { "email": "contact@matheusicaro.com" },
+    "license": {
+      "name": "MIT",
+      "url": "https://github.com/matheusicaro/challenge-full-stack-ducks-feeding/blob/master/LICENSE"
+    }
+  },
+  "host": "*",
+  "basePath": "/api/v1",
+  "tags": [],
+  "schemes": ["https", "http"],
+
+  "paths": {
+    "/health": {
+      "get": {
+        "tags": ["helth"],
+        "summary": "check the Api status",
+        "description": "",
+        "operationId": "getHealth",
+        "produces": ["application/json"],
+        "parameters": [],
+        "responses": {
+          "200": { "status": "ONLINE", "schema": { "$ref": "#/definitions/HealthStatus" } }
+        }
+      }
+    },
+
+    "/user/singup": {
+      "post": {
+        "tags": ["User"],
+        "summary": "Register new user",
+        "description": "Register new user in the database",
+        "operationId": "createUser",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "nome",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "email",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "password",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Request success"
+          },
+          "400": {
+            "description": "Invalid parameters - Message for invalid input parameters",
+            "schema": { "$ref": "#/definitions/ApiResponse" }
+          },
+          "422": {
+            "description": "Unprocessable Request - User already registered in the database",
+            "schema": {
+              "$ref": "#/definitions/ApiResponse"
+            }
+          },
+          "500": {
+            "description": "Internal error - Message for request processing failure for undetectable generic errors",
+            "schema": {
+              "$ref": "#/definitions/ApiResponse"
+            }
+          }
+        }
+      }
+    },
+
+    "/user/login": {
+      "post": {
+        "tags": ["User"],
+        "summary": "Login user",
+        "description": "Get user access token",
+        "operationId": "generateAuth",
+        "consumes": ["application/x-www-form-urlencoded"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "email",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "password",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Access authorization",
+            "schema": {
+              "$ref": "#/definitions/AuthToken"
+            }
+          },
+          "400": {
+            "description": "Invalid parameters - Message for invalid input parameters",
+            "schema": { "$ref": "#/definitions/ApiResponse" }
+          },
+          "401": {
+            "description": "Not Authorized -  Message for user not authorized",
+            "schema": { "$ref": "#/definitions/ApiResponse" }
+          },
+          "500": {
+            "description": "Internal error - Message for request processing failure for undetectable generic errors",
+            "schema": {
+              "$ref": "#/definitions/ApiResponse"
+            }
+          }
+        }
+      }
+    },
+
+    "/animals/feeding": {
+      "get": {
+        "tags": ["Animal feeding"],
+        "summary": "Get Animal feedings",
+        "description": "Get feeds from the informed animal",
+        "operationId": "getAnimalFeeding",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "animal",
+            "in": "header",
+            "required": true,
+            "description": "Desired animal",
+            "default": "DUCK",
+            "schema": {
+              "$ref": "#/definitions/Animal"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of animal feed",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/AnimalFeeding"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid parameters - Message for invalid input parameters",
+            "schema": { "$ref": "#/definitions/ApiResponse" }
+          },
+          "404": {
+            "description": "Not found data - Message for data not found for the input or route informed",
+            "schema": {
+              "$ref": "#/definitions/ApiResponse"
+            }
+          },
+          "500": {
+            "description": "Internal error - Message for request processing failure for undetectable generic errors",
+            "schema": {
+              "$ref": "#/definitions/ApiResponse"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Animal feeding"],
+        "summary": "Add new animal feedings",
+        "description": "Post new feed of the informed animal",
+        "operationId": "addAnimalFeeding",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "animal",
+            "in": "header",
+            "required": true,
+            "description": "Desired animal",
+            "default": "DUCK",
+            "schema": {
+              "$ref": "#/definitions/Animal"
+            }
+          },
+          {
+            "name": "Authorization",
+            "type": "apiKey",
+            "in": "header",
+            "required": true,
+            "description": "Api authentication token for registered users"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Animal feed",
+            "schema": {
+              "$ref": "#/definitions/AnimalFeeding"
+            }
+          }
+        },
+        "400": {
+          "description": "Invalid parameters - Message for invalid input parameters",
+          "schema": { "$ref": "#/definitions/ApiResponse" }
+        },
+        "401": {
+          "description": "Not Authorized -  Message for requests not authorized",
+          "schema": { "$ref": "#/definitions/ApiResponse" }
+        },
+        "404": {
+          "description": "Not found data - Message for data not found for the input or route informed",
+          "schema": {
+            "$ref": "#/definitions/ApiResponse"
+          }
+        },
+        "500": {
+          "description": "Internal error - Message for request processing failure for undetectable generic errors",
+          "schema": {
+            "$ref": "#/definitions/ApiResponse"
+          }
+        }
+      }
+    },
+
+    "/animals/feeding/schedules/users/:id": {
+      "get": {
+        "tags": ["Animal feeding schedules"],
+        "summary": "Get user appointments",
+        "description": "Get the user's appointments by the id informed",
+        "operationId": "getSchedules",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "type": "apiKey",
+            "in": "header",
+            "required": true,
+            "description": "Api authentication token for registered users"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Animal feeding scheduling",
+            "schema": {
+              "$ref": "#/definitions/UserSchedules"
+            }
+          },
+          "400": {
+            "description": "Invalid parameters - Message for invalid input parameters",
+            "schema": { "$ref": "#/definitions/ApiResponse" }
+          },
+          "401": {
+            "description": "Not Authorized -  Message for requests not authorized",
+            "schema": { "$ref": "#/definitions/ApiResponse" }
+          },
+          "422": {
+            "description": "Unprocessable Request - User already registered in the database",
+            "schema": {
+              "$ref": "#/definitions/ApiResponse"
+            }
+          },
+          "500": {
+            "description": "Internal error - Message for request processing failure for undetectable generic errors",
+            "schema": {
+              "$ref": "#/definitions/ApiResponse"
+            }
+          }
+        }
+      }
+    },
+
+    "/animals/feeding/schedules": {
+      "post": {
+        "tags": ["Animal feeding schedules"],
+        "summary": "Add new user appointments",
+        "description": "Add new user's appointments",
+        "operationId": "createSchedules",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "type": "apiKey",
+            "in": "header",
+            "required": true,
+            "description": "Api authentication token for registered users"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Animal feeding scheduling",
+            "schema": {
+              "$ref": "#/definitions/UserSchedules"
+            }
+          },
+          "400": {
+            "description": "Invalid parameters - Message for invalid input parameters",
+            "schema": { "$ref": "#/definitions/ApiResponse" }
+          },
+          "401": {
+            "description": "Not Authorized -  Message for requests not authorized",
+            "schema": { "$ref": "#/definitions/ApiResponse" }
+          },
+          "500": {
+            "description": "Internal error - Message for request processing failure for undetectable generic errors",
+            "schema": {
+              "$ref": "#/definitions/ApiResponse"
+            }
+          }
+        }
+      }
+    }
+  },
+
+  "definitions": {
+    "AnimalFeeding": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "example": "55",
+          "description": "Animal feeding ID"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "example": "2021-11-06T17:02:30.391Z",
+          "description": "Animal feed creation date"
+        },
+        "animal": {
+          "$ref": "#/definitions/Animal"
+        },
+        "feeding": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "example": "42",
+              "description": "Feeding ID"
+            },
+            "food": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "CORN",
+                  "description": "Food name"
+                },
+                "type": {
+                  "type": "string",
+                  "example": "CEREAL",
+                  "description": "Food type"
+                }
+              }
+            },
+            "time": {
+              "type": "string",
+              "example": "12:00 PM",
+              "description": "English time format"
+            },
+            "location": {
+              "type": "string",
+              "example": "Vancouver, BC, Canada",
+              "description": "Feeding location"
+            },
+            "quantity_kilos": {
+              "type": "number",
+              "format": "double",
+              "example": 2.525,
+              "description": "Amount of food in kilograms"
+            }
+          }
+        },
+        "user": {
+          "$ref": "#/definitions/User"
+        }
+      }
+    },
+
+    "AnimalName": {
+      "type": "string",
+      "enum": ["DUCK"]
+    },
+
+    "Animal": {
+      "type": "object",
+      "properties": {
+        "quantity": {
+          "type": "integer",
+          "example": 280,
+          "description": "Number of animals"
+        },
+        "nome": {
+          "$ref": "#/definitions/AnimalName"
+        }
+      }
+    },
+
+    "DaysOfWeek": {
+      "type": "string",
+      "enum": ["MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY", "SUNDAY"]
+    },
+
+    "UserSchedules": {
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "type": "string",
+          "example": "user@email.com",
+          "description": "User email"
+        },
+        "schedules": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Schedule"
+          }
+        }
+      }
+    },
+
+    "Schedule": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "example": "77",
+          "description": "Animal feeding ID"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "example": "2021-11-06T17:02:30.391Z",
+          "description": "Animal feed creation date"
+        },
+        "days_of_week": {
+          "type": "array",
+          "example": ["MONDAY", "TUESDAY", "SATURDAY", "SUNDAY"],
+          "items": {
+            "$ref": "#/definitions/DaysOfWeek"
+          }
+        },
+        "feeding_id": {
+          "type": "string",
+          "example": "55",
+          "description": "Animal feeding ID"
+        }
+      }
+    },
+
+    "User": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string",
+          "example": "user@email.com",
+          "description": "User email"
+        },
+        "nome": {
+          "type": "string",
+          "example": "User Name",
+          "description": "User name"
+        }
+      }
+    },
+
+    "AuthToken": {
+      "type": "object",
+      "properties": {
+        "access_token": {
+          "type": "string",
+          "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+        },
+        "expires_in": {
+          "type": "number",
+          "example": 1636221518437
+        }
+      }
+    },
+
+    "HealthStatus": {
+      "type": "object",
+      "properties": {
+        "time": {
+          "type": "string",
+          "format": "date-time",
+          "example": "2021-10-31T00:00:00Z"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["ONLINE", "FAILED"]
+        }
+      }
+    },
+
+    "ApiResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string",
+          "example": "message for error description or detailed API response",
+          "description": "Informational message with details of the request processing failure"
+        }
+      }
+    }
+  },
+
+  "externalDocs": { "description": "Find out more about Swagger", "url": "http://swagger.io" }
+}
