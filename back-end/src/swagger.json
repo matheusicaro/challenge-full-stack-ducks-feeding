@@ -40,7 +40,7 @@
         "produces": ["application/json"],
         "parameters": [
           {
-            "name": "nome",
+            "name": "name",
             "in": "formData",
             "required": true,
             "type": "string"
@@ -263,12 +263,6 @@
             "description": "Not Authorized -  Message for requests not authorized",
             "schema": { "$ref": "#/definitions/ApiResponse" }
           },
-          "422": {
-            "description": "Unprocessable Request - User already registered in the database",
-            "schema": {
-              "$ref": "#/definitions/ApiResponse"
-            }
-          },
           "500": {
             "description": "Internal error - Message for request processing failure for undetectable generic errors",
             "schema": {
@@ -399,7 +393,7 @@
           "example": 280,
           "description": "Number of animals"
         },
-        "nome": {
+        "name": {
           "$ref": "#/definitions/AnimalName"
         }
       }
@@ -464,7 +458,7 @@
           "example": "user@email.com",
           "description": "User email"
         },
-        "nome": {
+        "name": {
           "type": "string",
           "example": "User Name",
           "description": "User name"

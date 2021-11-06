@@ -1,8 +1,8 @@
 // @ts-nocheck
 
 import { mockRequest, mockResponse } from './util';
-import controller from '../../controllers/health.controller';
-import { Health } from '../../models';
+import controller from '../../api/controllers/health.controller';
+import { Health } from '../../api/models';
 
 jest.mock('../../config/logger');
 import { Logger } from '../../config/logger';
