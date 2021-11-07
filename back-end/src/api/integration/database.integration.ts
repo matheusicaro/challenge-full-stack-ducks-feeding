@@ -4,6 +4,7 @@ import DatabaseInstance from '../../config/database';
 import AnimalFeedingTable from './table/animal-feeding.table';
 import FeedingTable from './table/feeding.table';
 import FoodTable from './table/food.table';
+import UserTable from './table/user.table';
 
 /**
  * Class intended to return Animal Feeding services
@@ -43,6 +44,53 @@ export default class DatabaseIntegration {
     const result = await DatabaseInstance.query<AnimalFeedingDTO>(query);
 
     return result.rows.map(r => new AnimalFeedingDTO(r));
+  }
+
+  /**
+   * Method to get user by id
+   *
+   * @param  {string} id: user
+   * @returns {Promise<UserTable>}: promise to return user
+   */
+  public static async getUser(id: string): Promise<UserTable> {
+    const isTheSameId = `"user".email = '${id}'`;
+
+    const query = `
+        SELECT *
+        FROM ${this.TABLE_USER}
+        WHERE ${isTheSameId}
+    `;
+
+    const result = await DatabaseInstance.query<UserTable>(query);
+
+    return result.rows[0];
+  }
+
+  /**
+   * Method to save new User
+   *
+   * @param  {UserTable} user
+   * @returns {Promise<void}: promise to save new User
+   */
+  public static async saveUser(user: UserTable): Promise<void> {
+    const emailColumnName = '"email"';
+    const passwordColumnName = '"password"';
+    const nameColumnName = '"name"';
+
+    const query = `
+        INSERT INTO ${this.TABLE_USER} (
+          ${emailColumnName}, 
+          ${passwordColumnName},
+          ${nameColumnName}
+        )
+        VALUES (
+          '${user.getEmail()}', 
+          '${user.getPassword()}',
+          '${user.getName()}'
+        )
+    `;
+
+    await DatabaseInstance.query<FoodTable>(query);
   }
 
   /**
@@ -112,7 +160,7 @@ export default class DatabaseIntegration {
    * Method to save new Feeding
    *
    * @param  {FoodTable} food
-   * @returns {Promise<Array<void>}: promise to return new Food saved
+   * @returns {Promise<void>}: promise to return new Food saved
    */
   public static async saveFood(food: FoodTable): Promise<void> {
     const nameColumnName = '"name"';

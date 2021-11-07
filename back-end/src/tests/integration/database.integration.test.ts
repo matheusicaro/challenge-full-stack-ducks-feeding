@@ -119,4 +119,38 @@ describe("Test 'database.integration.ts'", () => {
        */
     });
   });
+
+  describe("Check method 'saveUser'", () => {
+    test('Should be called the Database instance with expected query contain the input values', async () => {
+      /**
+       * TODO: missing test due to lack of developer time
+       */
+    });
+
+    test('Should not return data and Database intance called only 1 time', async () => {
+      /**
+       * TODO: missing test due to lack of developer time
+       */
+    });
+
+    describe("Check method 'getUser'", () => {
+      test('Should be returned expected result from input data', async () => {
+        /**
+         * TODO: missing test due to lack of developer time
+         */
+      });
+
+      test('Should be called the Database instance with expected query contain the input values', async () => {
+        /**
+         * TODO: missing test due to lack of developer time
+         */
+      });
+
+      test('Should not return data and Database intance called only 1 time', async () => {
+        /**
+         * TODO: missing test due to lack of developer time
+         */
+      });
+    });
+  });
 });
