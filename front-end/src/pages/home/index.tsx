@@ -1,6 +1,6 @@
 import React from 'react';
 
-import AnimalFeeding from '../components/AnimalFeeding';
+import AnimalFeeding from '../components/animal-feeding';
 import Banner from '../components/Banner';
 import Footer from '../components/Footer';
 

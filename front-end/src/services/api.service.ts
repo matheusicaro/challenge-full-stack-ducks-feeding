@@ -2,7 +2,7 @@ import axios, { AxiosRequestConfig } from 'axios';
 
 import environments from '../environments';
 
-import { AnimalFeedingDTO, ResponseApi } from './types';
+import { AnimalFeedingDTO, NewAnimalFeeding, ResponseApi } from './types';
 
 /**
  * Class for integration with application backend
@@ -36,10 +36,9 @@ const delay = (start: number, callback: () => void) => {
 };
 
 /**
- * Function for post request method with delay function in the parse of the return of requests
+ * Function for get request method with delay function in the parse of the return of requests
  *
  * @param  {string} path: path to request
- * @param  {any} data?: body to request
  * @param  {AxiosRequestConfig} config?: configs to request such as header, params, etc...
  *
  * @returns Response: returns the requested response with date of type T which must be absent in case of error
@@ -55,11 +54,36 @@ const get = async <T>(path: string, config?: AxiosRequestConfig): Promise<Respon
 };
 
 /**
+ * Function for post request method with delay function in the parse of the return of requests
+ *
+ * @param  {string} path: path to request
+ * @param  {any} data?: body to request
+ * @param  {AxiosRequestConfig} config?: configs to request such as header, params, etc...
+ *
+ * @returns Response: returns the requested response with date of type T which must be absent in case of error
+ */
+const post = async <T>(path: string, data?: any, config?: AxiosRequestConfig): Promise<{ status: number; data: T; message?: string }> => {
+  const start = Date.now();
+
+  return new Promise((resolve, reject) => {
+    API.post(path, data, config)
+      .then((res) => delay(start, () => resolve({ status: res.status, data: res.data })))
+      .catch((error) => delay(start, () => reject({ status: error?.response?.status, message: error?.response?.data?.message })));
+  });
+};
+
+/**
  * Public method export to requests
  *
  * @getGeolocationIP - function to get ip geolocation on back end
  *
  */
 export default {
-  getAnimalFeeding: (animal: string) => get<AnimalFeedingDTO>('/animals/feeding', getConfig({ animal })),
+  getAnimalFeeding: (animal: string) => {
+    return get<AnimalFeedingDTO>('/animals/feeding', getConfig({ animal }));
+  },
+
+  saveAnimalFeeding: (newAnimalFeeding: NewAnimalFeeding, animal: string) => {
+    return post<AnimalFeedingDTO>('/animals/feeding', { newAnimalFeeding }, getConfig({ animal }));
+  },
 };

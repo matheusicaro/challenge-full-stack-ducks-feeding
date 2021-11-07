@@ -3,23 +3,27 @@ import { connect } from 'react-redux';
 
 import { bindActionCreators, Dispatch } from 'redux';
 
-import { ApplicationState } from '../../store';
-import { loadRequest } from '../../store/ducks/animal-feeding/actions';
-import { AnimalFeeding as AnimalFeedingType } from '../../store/ducks/animal-feeding/types';
+import { ApplicationState } from '../../../../store';
+import { loadRequest } from '../../../../store/ducks/animal-feeding/actions';
+import { AnimalFeeding } from '../../../../store/ducks/animal-feeding/types';
 
-type StateProps = {
-  animalFeeding: Array<AnimalFeedingType>;
+export type StateProps = {
+  animalFeeding: Array<AnimalFeeding>;
   error: boolean;
   loading: boolean;
 };
 
-type DispatchProps = {
+export type DispatchProps = {
   loadRequest: () => void;
 };
 
-type Props = StateProps & DispatchProps;
+export type Props = StateProps & DispatchProps;
 
-const AnimalFeeding: React.FC<Props> = (props) => {
+/**
+ * Stateful Component for Animal Feeding List View
+ *
+ */
+const DashboardAnimalFeeding: React.FC<Props> = (props) => {
   const isStoryEmpty = props.animalFeeding.length < 1 && !props.loading && !props.error;
 
   if (isStoryEmpty) props.loadRequest();
@@ -44,4 +48,4 @@ const mapStateToProps = (state: ApplicationState) => ({
 
 const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators({ loadRequest }, dispatch);
 
-export default connect(mapStateToProps, mapDispatchToProps)(AnimalFeeding);
+export default connect(mapStateToProps, mapDispatchToProps)(DashboardAnimalFeeding);

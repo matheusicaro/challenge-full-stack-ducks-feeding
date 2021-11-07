@@ -1,4 +1,4 @@
-describe("Test 'AnimalFeeding.tsx'", () => {
+describe("Test 'DashboardAnimalFeeding'", () => {
   test('Props.loadRequest should be called if store property is empty, no error or no loading state', () => {
     /**
      * TODO: missing test due to lack of developer time
