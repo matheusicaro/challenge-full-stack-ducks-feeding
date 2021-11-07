@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "lib": ["dom", "dom.iterable"],
+    "types": ["jest", "node"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": false,
+    "noEmit": true,
+    "jsx": "react",
+  },
+  "include": ["src"],
+  "extends": "./node_modules/react-redux-typescript-scripts/tsconfig.json",
+  "exclude": ["node_modules", "__tests__/*.test.ts"],
+  "typeRoots": ["node_modules/@types"]
+}
