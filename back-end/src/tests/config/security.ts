@@ -28,4 +28,36 @@ describe("Test 'security.ts'", () => {
        */
     });
   });
+
+  describe("Check method 'isTokenExpired'", () => {
+    test('Should return true token for unexpired token', async () => {
+      /**
+       * TODO: missing test due to lack of developer time
+       */
+    });
+
+    test('Should return true if any error is caught', async () => {
+      /**
+       * TODO: missing test due to lack of developer time
+       */
+    });
+
+    test('Should return false token for expired token', async () => {
+      /**
+       * TODO: missing test due to lack of developer time
+       */
+    });
+
+    test('Should return false token for expired token', async () => {
+      /**
+       * TODO: missing test due to lack of developer time
+       */
+    });
+
+    test('Should log caught error', async () => {
+      /**
+       * TODO: missing test due to lack of developer time
+       */
+    });
+  });
 });

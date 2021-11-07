@@ -3,6 +3,5 @@ export const StringUtil = {
 };
 
 export const DateUtil = {
-  convertToSeconds: (hour: number): number => hour * 60,
-  getTimestampNowinSeconds: (): number => Math.floor(Date.now() / 1000)
+  convertToMilliseconds: (minutes: number): number => minutes * 60000
 };

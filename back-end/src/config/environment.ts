@@ -5,5 +5,5 @@ export default {
   PORT: parseInt(process.env.PORT || ''),
   DATABASE_URL: process.env.DATABASE_URL,
   JWT_TOKEN_SECRET: process.env.JWT_TOKEN_SECRET || '',
-  JWT_TOKEN_EXPIRY_TIME_IN_HOURS: Number.parseInt(process.env.JWT_TOKEN_EXPIRY_TIME_IN_HOURS || '0')
+  JWT_TOKEN_EXPIRY_TIME_IN_MINUTES: Number.parseInt(process.env.JWT_TOKEN_EXPIRY_TIME_IN_MINUTES || '0')
 };

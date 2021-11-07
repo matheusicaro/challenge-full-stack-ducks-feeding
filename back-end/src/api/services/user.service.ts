@@ -59,11 +59,11 @@ export default class UserService {
 
     if (invalidUser) throw new ErrorResponse(this.MESSAGE_INVALID_EMAIL_OR_PASSWORDD, HttpStatusCode.UNAUTHORIZED);
 
-    const epiryTime = DateUtil.convertToSeconds(environment.JWT_TOKEN_EXPIRY_TIME_IN_HOURS);
-    const expiresIn = DateUtil.getTimestampNowinSeconds() + epiryTime;
+    const expiryTime = DateUtil.convertToMilliseconds(environment.JWT_TOKEN_EXPIRY_TIME_IN_MINUTES);
+    const expiresIn = Date.now() + expiryTime;
 
     const payload = { userId: user.getEmail() };
-    const config: jwt.SignOptions = { expiresIn };
+    const config: jwt.SignOptions = { expiresIn, noTimestamp: true };
 
     const token = await jwt.sign(payload, environment.JWT_TOKEN_SECRET, config);
 
