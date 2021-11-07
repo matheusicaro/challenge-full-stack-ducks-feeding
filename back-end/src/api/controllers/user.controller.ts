@@ -3,6 +3,7 @@ import { Logger } from '../../config/logger';
 import { MESSAGES } from '../constants';
 import { ErrorResponse } from '../exceptions';
 import { ApiResponse } from '../models';
+import AuthToken from '../models/auth-token.model';
 import { UserService } from '../services';
 import { StringUtil } from '../utils';
 
@@ -32,6 +33,35 @@ export default class UserController {
       await UserService.creatUser(userName, userEmail, userPassword);
 
       return res.status(204).json({});
+    } catch (error) {
+      if (error instanceof ErrorResponse) return res.status(error.statusCode).json(new ApiResponse(error.message));
+
+      Logger.error(error);
+      return res.status(500).json(new ApiResponse(MESSAGES.INTERNAL_ERROR));
+    }
+  }
+
+  /**
+   * Method responsible for for handling requests of user registration service in the database
+   *
+   * more at: http://localhost:4000/api-docs/#/User/createUser
+   *
+   * @param  {Request} req
+   * @param  {Response} res
+   * @returns {Promise<Response<void>> | Response<ApiResponse>}
+   */
+  public static async getAuthToken(req: Request, res: Response): Promise<Response<AuthToken>> {
+    try {
+      const userEmail = req.body['email'];
+      const userPassword = req.body['password'];
+
+      const invalidInputs = StringUtil.isNullOrEmpty(userEmail) || StringUtil.isNullOrEmpty(userPassword);
+
+      if (invalidInputs) return res.status(400).json(new ApiResponse(MESSAGES.INVALID_PARAMS));
+
+      const authToken = await UserService.getAuthToken(userEmail, userPassword);
+
+      return res.status(200).json(authToken);
     } catch (error) {
       if (error instanceof ErrorResponse) return res.status(error.statusCode).json(new ApiResponse(error.message));
 

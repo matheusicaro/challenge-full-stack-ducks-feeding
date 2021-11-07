@@ -10,5 +10,6 @@ router.get('/animals/feeding', AnimalFeedingController.getFeeding);
 router.post('/animals/feeding', AnimalFeedingController.saveAnimalFeeding);
 
 router.post('/user/singup', UserController.singup);
+router.post('/user/login', UserController.getAuthToken);
 
 export default router;
