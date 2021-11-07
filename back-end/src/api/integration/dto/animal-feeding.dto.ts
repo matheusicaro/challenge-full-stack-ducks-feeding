@@ -5,7 +5,6 @@ export default class AnimalFeedingDTO {
   private animal_name: string;
   private animal_quantity: number;
   private created_at: string;
-  private feed_id: string;
   private feeding_id: string;
   private food_name: string;
   private food_type: string;
@@ -15,34 +14,21 @@ export default class AnimalFeedingDTO {
   private user_id: string;
   private user_name: string;
 
-  constructor(
-    id: string,
-    animal_name: string,
-    animal_quantity: number,
-    created_at: string,
-    feed_id: string,
-    feeding_id: string,
-    food_name: string,
-    food_type: string,
-    location: string,
-    quantity_kilos: number,
-    time: string,
-    user_id: string,
-    user_name: string
-  ) {
-    this.id = id;
-    this.animal_name = animal_name;
-    this.animal_quantity = animal_quantity;
-    this.created_at = created_at;
-    this.feed_id = feed_id;
-    this.feeding_id = feeding_id;
-    this.food_name = food_name;
-    this.food_type = food_type;
-    this.location = location;
-    this.quantity_kilos = quantity_kilos;
-    this.time = time;
-    this.user_id = user_id;
-    this.user_name = user_name;
+  constructor(data: any) {
+    const dataReceied = data || {};
+
+    this.id = dataReceied['id'];
+    this.animal_quantity = dataReceied['animal_quantity'];
+    this.animal_name = dataReceied['animal_name'];
+    this.feeding_id = dataReceied['feeding_id'];
+    this.user_id = dataReceied['user_id'];
+    this.created_at = dataReceied['created_at'];
+    this.time = dataReceied['time'];
+    this.location = dataReceied['location'];
+    this.quantity_kilos = dataReceied['quantity_kilos'];
+    this.food_name = dataReceied['food_name'];
+    this.food_type = dataReceied['food_type'];
+    this.user_name = dataReceied['user_name'];
   }
 
   public getId(): string {
@@ -59,10 +45,6 @@ export default class AnimalFeedingDTO {
 
   public getFeedingId(): string {
     return this.feeding_id;
-  }
-
-  public getFeedId(): string {
-    return this.feed_id;
   }
 
   public getUserId(): string {

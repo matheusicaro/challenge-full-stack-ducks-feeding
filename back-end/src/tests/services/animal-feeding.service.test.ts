@@ -7,6 +7,7 @@ import DatabaseIntegration from '../../api/integration/database.integration';
 import AnimalFeedingDTO from '../../api/integration/dto/animal-feeding.dto';
 import { User } from '../../api/models';
 import AnimalFeeding, { Animal, AnimalEnum, Feeding, Food } from '../../api/models/animal-feeding.model';
+import exampleResponseAnimalFeedingDtoDatabase from '../json/example-response-animal-feeding-dto-database.json';
 
 describe("Check method 'getFeedings'", () => {
   beforeEach(() => {
@@ -15,21 +16,7 @@ describe("Check method 'getFeedings'", () => {
 
   test('Should return expected alimentation feeds in success case', async () => {
     const animal = AnimalEnum.DUCK;
-    const dto = new AnimalFeedingDTO(
-      'id',
-      animal.toString(),
-      0,
-      'created_at',
-      'feed_id',
-      'feeding_id',
-      'food_name',
-      'food_type',
-      'location',
-      0,
-      'time',
-      'user_id',
-      'user_name'
-    );
+    const dto = new AnimalFeedingDTO(exampleResponseAnimalFeedingDtoDatabase);
 
     const expected = [
       new AnimalFeeding(

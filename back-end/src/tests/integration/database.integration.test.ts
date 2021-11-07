@@ -1,15 +1,32 @@
 /*eslint no-undef: 0*/
 
+import { QueryResult } from 'pg';
 import Integration from '../../api/integration/database.integration';
 import AnimalFeedingDTO from '../../api/integration/dto/animal-feeding.dto';
 import { AnimalEnum } from '../../api/models/animal-feeding.model';
+
+import exampleResponseAnimalFeedingDtoDatabase from '../json/example-response-animal-feeding-dto-database.json';
 
 jest.mock('../../config/database');
 import DatabaseInstance from '../../config/database';
 
 describe("Check method 'getFullRelationFeedingBy'", () => {
+  let getMockedReturnQueryWith: <T>(data: Array<T>) => Promise<QueryResult<T>>;
+
   beforeEach(() => {
     jest.clearAllMocks();
+
+    getMockedReturnQueryWith = <T>(data: Array<T>): Promise<QueryResult<T>> => {
+      return new Promise<QueryResult<T>>(resolve => {
+        resolve({
+          rows: data,
+          command: '',
+          rowCount: 1,
+          oid: 1,
+          fields: []
+        });
+      });
+    };
   });
 
   test('Should be called the Database instance with expected query contain the input', async () => {
@@ -20,8 +37,10 @@ describe("Check method 'getFullRelationFeedingBy'", () => {
         INNER JOIN feeding ON animal_feeding.feeding_id = feeding.id
         INNER JOIN food ON feeding.food_name = food.name
         INNER JOIN "user" ON "user".email = animal_feeding.user_id
-        WHERE animal_feeding.animal_name = ${input}
+        WHERE animal_feeding.animal_name = '${input}'
     `;
+
+    DatabaseInstance.query = jest.fn().mockImplementation(() => getMockedReturnQueryWith([]));
 
     await Integration.getFullRelationFeedingBy(AnimalEnum.DUCK);
 
@@ -32,29 +51,9 @@ describe("Check method 'getFullRelationFeedingBy'", () => {
   });
 
   test('Should return expected data and Database intance called only 1 time', async () => {
-    const expectedData = [
-      new AnimalFeedingDTO(
-        'id',
-        'DUCK',
-        0,
-        'created_at',
-        'feed_id',
-        'feeding_id',
-        'food_name',
-        'food_type',
-        'location',
-        0,
-        'time',
-        'user_id',
-        'user_name'
-      )
-    ];
+    const expectedData = [new AnimalFeedingDTO(exampleResponseAnimalFeedingDtoDatabase)];
 
-    DatabaseInstance.query = jest.fn().mockImplementation(() => {
-      return new Promise(resolve => {
-        resolve(expectedData);
-      });
-    });
+    DatabaseInstance.query = jest.fn().mockImplementation(() => getMockedReturnQueryWith(expectedData));
 
     const returned = await Integration.getFullRelationFeedingBy(AnimalEnum.DUCK);
 

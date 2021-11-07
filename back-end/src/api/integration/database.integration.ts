@@ -26,7 +26,7 @@ export default class DatabaseIntegration {
     const sameFeeding = 'animal_feeding.feeding_id = feeding.id';
     const sameFoodName = 'feeding.food_name = food.name';
     const sameUser = '"user".email = animal_feeding.user_id';
-    const isTheSameAnimal = `animal_feeding.animal_name = ${animalName}`;
+    const isTheSameAnimal = `animal_feeding.animal_name = '${animalName}'`;
 
     const query = `
         SELECT *, ${feedinIdgAlias}, ${foodTypeAlias}, ${userName}
@@ -37,6 +37,8 @@ export default class DatabaseIntegration {
         WHERE ${isTheSameAnimal}
     `;
 
-    return await DatabaseInstance.query<Array<AnimalFeedingDTO>>(query);
+    const result = await DatabaseInstance.query<AnimalFeedingDTO>(query);
+
+    return result.rows.map(r => new AnimalFeedingDTO(r));
   }
 }
