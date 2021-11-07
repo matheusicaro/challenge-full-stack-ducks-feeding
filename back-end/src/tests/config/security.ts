@@ -1,26 +1,28 @@
 /*eslint no-undef: 0*/
 
 describe("Test 'security.ts'", () => {
-  describe("Check method 'creatUser'", () => {
-    test('Should be saved expected user with input data', async () => {
+  describe("Check method 'encrypt'", () => {
+    test('Should encrypt input text with 8 rounds as input', async () => {
       /**
        * TODO: missing test due to lack of developer time
        */
     });
 
-    test('Should be saved user with password encrypted', async () => {
+    test('Bcrypt hash method should be called with params expected only 1 time', async () => {
+      /**
+       * TODO: missing test due to lack of developer time
+       */
+    });
+  });
+
+  describe("Check method 'isSameHash'", () => {
+    test('Should compare inputs with expected response', async () => {
       /**
        * TODO: missing test due to lack of developer time
        */
     });
 
-    test('DatabaseIntegration and Security.encrypt method should be called with params expected only 1 time', async () => {
-      /**
-       * TODO: missing test due to lack of developer time
-       */
-    });
-
-    test('If user is already registered Should be returned error of ErrorResponse type with expected message and http status code 422', async () => {
+    test('Bcrypt compare method should be called with params expected only 1 time', async () => {
       /**
        * TODO: missing test due to lack of developer time
        */

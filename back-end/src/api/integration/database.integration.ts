@@ -63,7 +63,7 @@ export default class DatabaseIntegration {
 
     const result = await DatabaseInstance.query<UserTable>(query);
 
-    return result.rows[0];
+    return new UserTable(result.rows[0]);
   }
 
   /**
