@@ -14,6 +14,14 @@ export class Animal {
     this.name = name;
     this.quantity = quantity;
   }
+
+  public getName(): AnimalEnum {
+    return this.name;
+  }
+
+  public getQuantity(): number {
+    return this.quantity;
+  }
 }
 
 export class Food {
@@ -23,6 +31,14 @@ export class Food {
   constructor(name: string, type: string) {
     this.name = name;
     this.type = type;
+  }
+
+  public getName(): string {
+    return this.name;
+  }
+
+  public getType(): string {
+    return this.type;
   }
 }
 
@@ -40,6 +56,26 @@ export class Feeding {
     this.location = location;
     this.quantity_kilos = quantityKilos;
   }
+
+  public getId(): string {
+    return this.id;
+  }
+
+  public getFood(): Food {
+    return this.food;
+  }
+
+  public getTime(): string {
+    return this.time;
+  }
+
+  public getLocation(): string {
+    return this.location;
+  }
+
+  public getQuantityKilos(): number {
+    return this.quantity_kilos;
+  }
 }
 
 export default class AnimalFeeding {
@@ -55,5 +91,17 @@ export default class AnimalFeeding {
     this.animal = animal;
     this.feeding = feeding;
     this.user = user;
+  }
+
+  public getFeeding(): Feeding {
+    return this.feeding;
+  }
+
+  public getAnimal(): Animal {
+    return this.animal;
+  }
+
+  public getUser(): User {
+    return this.user;
   }
 }
