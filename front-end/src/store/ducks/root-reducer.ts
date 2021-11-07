@@ -3,7 +3,7 @@ import { combineReducers } from 'redux';
 import AnimalFeedingReducer from './animal-feeding/reducer';
 
 export const rootReducer = combineReducers({
-  AnimalFeeding: AnimalFeedingReducer,
+  animalFeeding: AnimalFeedingReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

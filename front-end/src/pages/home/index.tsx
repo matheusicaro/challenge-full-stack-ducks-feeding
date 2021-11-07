@@ -1,5 +1,6 @@
 import React from 'react';
 
+import AnimalFeeding from '../components/AnimalFeeding';
 import Banner from '../components/Banner';
 import Footer from '../components/Footer';
 
@@ -8,6 +9,8 @@ const HomePage: React.FC = (props) => {
     <div>
       <Banner />
       <h1>hello</h1>
+      <AnimalFeeding />
+
       <Footer />
     </div>
   );

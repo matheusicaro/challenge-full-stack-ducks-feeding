@@ -10,13 +10,36 @@ export enum Types {
 }
 
 export type State = {
-  readonly data: [];
+  readonly data: Array<AnimalFeeding>;
   readonly loading: boolean;
   readonly error: boolean;
 };
 
-export type Payload = [];
+export type Payload = Array<AnimalFeeding>;
 
 export interface Action extends AnyAction {
   payload: Payload;
 }
+
+export type AnimalFeeding = {
+  id: string;
+  createdAt: Date;
+  animal: {
+    quantity: number;
+    name: string;
+  };
+  feeding: {
+    id: string;
+    food: {
+      name: string;
+      type: string;
+    };
+    time: string;
+    location: string;
+    quantityKilos: number;
+  };
+  user: {
+    email: string;
+    name: string;
+  };
+};

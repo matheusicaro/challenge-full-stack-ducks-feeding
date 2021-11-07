@@ -1,4 +1,4 @@
-describe("Test 'Banner.ts'", () => {
+describe("Test 'Banner.tsx'", () => {
   test('should return container with expected json package attributes', () => {
     /**
      * TODO: missing test due to lack of developer time
