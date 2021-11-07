@@ -2,6 +2,8 @@ require('dotenv').config();
 import cors = require('cors');
 import morgan = require('morgan');
 import express from 'express';
+import bodyParser from 'body-parser';
+
 import swaggerUI from 'swagger-ui-express';
 import swaggerDocs from './swagger.json';
 
@@ -24,6 +26,7 @@ app.set('host', environment.HOST_NAME);
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(morgan('common'));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/', (req, res) => res.redirect('/api-docs'));
 app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocs));

@@ -194,11 +194,20 @@
             }
           },
           {
-            "name": "Authorization",
-            "type": "apiKey",
+            "name": "x-api-token",
+            "type": "string",
             "in": "header",
             "required": true,
             "description": "Api authentication token for registered users"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Object required to save new animal feeding",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AnimalFeedingDTO"
+            }
           }
         ],
         "responses": {
@@ -341,6 +350,54 @@
               "example": "42",
               "description": "Feeding ID"
             },
+            "food": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "CORN",
+                  "description": "Food name"
+                },
+                "type": {
+                  "type": "string",
+                  "example": "CEREAL",
+                  "description": "Food type"
+                }
+              }
+            },
+            "time": {
+              "type": "string",
+              "example": "12:00 PM",
+              "description": "English time format"
+            },
+            "location": {
+              "type": "string",
+              "example": "Vancouver, BC, Canada",
+              "description": "Feeding location"
+            },
+            "quantity_kilos": {
+              "type": "number",
+              "format": "double",
+              "example": 2.525,
+              "description": "Amount of food in kilograms"
+            }
+          }
+        },
+        "user": {
+          "$ref": "#/definitions/User"
+        }
+      }
+    },
+
+    "AnimalFeedingDTO": {
+      "type": "object",
+      "properties": {
+        "animal": {
+          "$ref": "#/definitions/Animal"
+        },
+        "feeding": {
+          "type": "object",
+          "properties": {
             "food": {
               "type": "object",
               "properties": {
