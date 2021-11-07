@@ -1,5 +1,8 @@
 /* eslint-disable @typescript-eslint/camelcase */
 
+/**
+ * user Database Table Representation Model
+ */
 export default class UserTable {
   private email: string;
   private name: string;

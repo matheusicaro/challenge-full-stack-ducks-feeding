@@ -1,5 +1,8 @@
 /* eslint-disable @typescript-eslint/camelcase */
 
+/**
+ * food Database Table Representation Model
+ */
 export default class FoodTable {
   private name: string;
   private type: string;

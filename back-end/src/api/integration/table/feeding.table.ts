@@ -1,5 +1,8 @@
 /* eslint-disable @typescript-eslint/camelcase */
 
+/**
+ * feeding Database Table Representation Model
+ */
 export default class FeedingTable {
   private id: string;
   private time: string;

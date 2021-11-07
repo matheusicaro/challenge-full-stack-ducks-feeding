@@ -1,5 +1,8 @@
 /* eslint-disable @typescript-eslint/camelcase */
 
+/**
+ * Abstraction model for join data between Animal Feeding and Feeding Table tables.
+ */
 export default class AnimalFeedingDTO {
   private id: string;
   private animal_name: string;

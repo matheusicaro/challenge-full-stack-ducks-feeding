@@ -1,5 +1,8 @@
 /* eslint-disable @typescript-eslint/camelcase */
 
+/**
+ * Animal_feeding Database Table Representation Model
+ */
 export default class AnimalFeedingTable {
   private id: string;
   private animal_name: string;
