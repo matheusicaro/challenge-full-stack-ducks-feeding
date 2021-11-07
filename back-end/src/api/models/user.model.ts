@@ -1,9 +1,17 @@
 export default class User {
   private email: string;
-  private nome: string;
+  private name: string;
 
-  constructor(email: string, nome: string) {
+  constructor(email: string, name: string) {
     this.email = email;
-    this.nome = nome;
+    this.name = name;
+  }
+
+  public getEmail(): string {
+    return this.email;
+  }
+
+  public getName(): string {
+    return this.name;
   }
 }
