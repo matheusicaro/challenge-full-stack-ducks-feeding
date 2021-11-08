@@ -1,4 +1,4 @@
-describe("Test 'AddNewAnimalFeeding'", () => {
+describe("Test 'NewAnimalFeedingPage'", () => {
   test('Should start component state with expected initial state values', () => {
     /**
      * TODO: missing test due to lack of developer time
