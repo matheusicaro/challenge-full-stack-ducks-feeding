@@ -26,3 +26,5 @@ artifacts:
     - server.js
     - package.json
     - node_modules/async/*
+  base-directory: back-end/
+
