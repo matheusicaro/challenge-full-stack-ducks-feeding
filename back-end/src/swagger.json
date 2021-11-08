@@ -533,6 +533,11 @@
         "expires_in": {
           "type": "number",
           "example": 1636221518437
+        },
+        "user_name": {
+          "type": "string",
+          "example": "User Name",
+          "description": "User name"
         }
       }
     },

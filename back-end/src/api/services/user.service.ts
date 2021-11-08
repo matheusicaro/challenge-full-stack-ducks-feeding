@@ -67,6 +67,6 @@ export default class UserService {
 
     const token = await jwt.sign(payload, environment.JWT_TOKEN_SECRET, config);
 
-    return new AuthToken(token, expiresIn);
+    return new AuthToken(token, expiresIn, user.getName());
   }
 }
