@@ -78,7 +78,7 @@ const post = async <T>(path: string, data?: any, config?: AxiosRequestConfig): P
  * @getGeolocationIP - function to get ip geolocation on back end
  *
  */
-export default {
+const ApiService = {
   getAnimalFeeding: (animal: string) => {
     return get<AnimalFeedingDTO>('/animals/feeding', getConfig({ animal }));
   },
@@ -86,4 +86,14 @@ export default {
   saveAnimalFeeding: (newAnimalFeeding: NewAnimalFeeding, animal: string) => {
     return post<AnimalFeedingDTO>('/animals/feeding', { newAnimalFeeding }, getConfig({ animal }));
   },
+
+  login: (email: string, password: string) => {
+    return post<AnimalFeedingDTO>('/user/login', { email, password }, getConfig({}));
+  },
+
+  singup: (name: string, email: string, password: string) => {
+    return post<AnimalFeedingDTO>('/user/singup', { name, email, password }, getConfig({}));
+  },
 };
+
+export default ApiService;

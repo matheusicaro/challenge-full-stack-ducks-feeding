@@ -46,3 +46,9 @@ export type ResponseApi<T> = {
   data: T;
   message?: string;
 };
+
+export type AuthToken = {
+  token: string;
+  expires_in: number;
+  user_name: string;
+};

@@ -1,18 +1,18 @@
 import React from 'react';
 
 import AnimalFeeding from '../components/animal-feeding';
+import AppBar from '../components/app-bar';
 import Banner from '../components/Banner';
 import Footer from '../components/Footer';
 
 const HomePage: React.FC = (props) => {
   return (
-    <div>
+    <main>
       <Banner />
-      <h1>hello</h1>
+      <AppBar />
       <AnimalFeeding />
-
       <Footer />
-    </div>
+    </main>
   );
 };
 

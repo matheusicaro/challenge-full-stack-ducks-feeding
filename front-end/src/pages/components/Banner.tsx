@@ -14,7 +14,9 @@ const Banner: React.FC = () => {
   return (
     <Container>
       <p className="banner-contrast">{description}</p>
-      <p className="banner-topics">{`- Developed with ${tags.join(', ')}`}</p>
+      <p className="banner-topics">
+        - Developed with: <span>{tags.join(', ')}.</span>
+      </p>
       <p className="banner-topics">
         - Repository at:
         <a href={repository.url} rel="noopener noreferrer" target="_blank" title="Project repository">
@@ -30,7 +32,6 @@ export default Banner;
 const Container = styled.section`
   padding: 40px 5vw;
   padding-top: 60px;
-  margin-bottom: 40px;
   border: none;
   background-color: #2f2f2f;
 
@@ -47,6 +48,10 @@ const Container = styled.section`
 
   .banner-topics {
     color: #a3d0f1;
+
+    & > span {
+      font-size: 1rem;
+    }
 
     & > a {
       color: aquamarine;
