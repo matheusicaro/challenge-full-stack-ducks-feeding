@@ -1,8 +1,8 @@
 import React from 'react';
 
 import AnimalFeeding from '../components/animal-feeding';
-import Banner from '../components/Banner';
-import Footer from '../components/Footer';
+import Banner from '../components/banner';
+import Footer from '../components/footer';
 import Header from '../components/header';
 
 const HomePage: React.FC = (props) => {

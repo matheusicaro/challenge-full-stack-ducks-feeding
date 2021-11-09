@@ -2,7 +2,7 @@ import React from 'react';
 
 import styled from 'styled-components';
 
-import packageJSON from '../../../package.json';
+import packageJSON from '../../../../package.json';
 import LogoBackground from '../../assets/images/logo_background.png';
 
 /**

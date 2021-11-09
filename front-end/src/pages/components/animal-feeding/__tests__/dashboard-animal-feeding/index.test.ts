@@ -1,5 +1,5 @@
-describe("Test animal-feeding 'sagas.ts'", () => {
-  test('must return success action if there is no processing failure', () => {
+describe("Test 'DashboardAnimalFeeding'", () => {
+  test('Props.loadRequest should be called if store property is empty, no error or no loading state', () => {
     /**
      * TODO: missing test due to lack of developer time
      *
@@ -8,7 +8,7 @@ describe("Test animal-feeding 'sagas.ts'", () => {
      */
   });
 
-  test('should return failure action if processing fails', () => {
+  test('should return loading component if store state is loading', () => {
     /**
      * TODO: missing test due to lack of developer time
      *
@@ -17,7 +17,7 @@ describe("Test animal-feeding 'sagas.ts'", () => {
      */
   });
 
-  test('should return failure action if processing fails', () => {
+  test('should return error component if store state is error', () => {
     /**
      * TODO: missing test due to lack of developer time
      *
@@ -26,7 +26,7 @@ describe("Test animal-feeding 'sagas.ts'", () => {
      */
   });
 
-  test('Should return failure action if response is invalid or with status other than 200', () => {
+  test('should be passed store data, loading and error at component initialization', () => {
     /**
      * TODO: missing test due to lack of developer time
      *
@@ -35,7 +35,7 @@ describe("Test animal-feeding 'sagas.ts'", () => {
      */
   });
 
-  test('Should build AnimalFeeding payload from AnimalFeedingDTO and return success action', () => {
+  test('should be passed loadRequest store function at component initialization', () => {
     /**
      * TODO: missing test due to lack of developer time
      *

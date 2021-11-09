@@ -1,5 +1,5 @@
-describe("Test animal-feeding 'sagas.ts'", () => {
-  test('must return success action if there is no processing failure', () => {
+describe("Test login 'sagas.ts'", () => {
+  test('must return success with expected params action if there is no request failure', () => {
     /**
      * TODO: missing test due to lack of developer time
      *
@@ -8,7 +8,7 @@ describe("Test animal-feeding 'sagas.ts'", () => {
      */
   });
 
-  test('should return failure action if processing fails', () => {
+  test('should return failure action if request fails', () => {
     /**
      * TODO: missing test due to lack of developer time
      *
@@ -17,7 +17,7 @@ describe("Test animal-feeding 'sagas.ts'", () => {
      */
   });
 
-  test('should return failure action if processing fails', () => {
+  test('should return failure action if request fails', () => {
     /**
      * TODO: missing test due to lack of developer time
      *
@@ -26,7 +26,7 @@ describe("Test animal-feeding 'sagas.ts'", () => {
      */
   });
 
-  test('Should return failure action if response is invalid or with status other than 200', () => {
+  test('should return failure action if response is invalid or with status other than 200', () => {
     /**
      * TODO: missing test due to lack of developer time
      *
@@ -35,7 +35,7 @@ describe("Test animal-feeding 'sagas.ts'", () => {
      */
   });
 
-  test('Should build AnimalFeeding payload from AnimalFeedingDTO and return success action', () => {
+  test('should save token and user through authentication service', () => {
     /**
      * TODO: missing test due to lack of developer time
      *
