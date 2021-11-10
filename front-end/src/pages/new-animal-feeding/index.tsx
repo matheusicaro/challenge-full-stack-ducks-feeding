@@ -1,13 +1,10 @@
-import React, { Fragment, useState } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 
 import ApiService from '../../services/api.service';
 import { AnimalFeedingDTO, NewAnimalFeeding } from '../../services/types';
 import { ApplicationState } from '../../store';
 import { User } from '../../store/ducks/login/types';
-import Banner from '../components/banner';
-import Footer from '../components/footer';
-import Header from '../components/header';
 
 import NewAnimalFeedingPageView from './NewAnimalFeedingView';
 import { HandleInputChangeType, NewAnimalFeedingState, NewFeedingFormData } from './types';
@@ -47,24 +44,19 @@ const NewAnimalFeedingPage: React.FC<StateProps> = (props) => {
   };
 
   return (
-    <Fragment>
-      <Banner />
-      <Header />
-      <NewAnimalFeedingPageView
-        onClickSubmitButton={sendNewAnimalFeeding}
-        handleInputChange={handleFormDataInput}
-        requestSending={{
-          loading: state.loading,
-          error: state.error,
-          success: state.success,
-          alert: state.alertType ? ALERTS[state.alertType].type : state.alertType,
-          alertMessage: state.alertType ? ALERTS[state.alertType].message : state.alertType,
-        }}
-        formData={state.formData}
-        invalidFormData={state.invalidFormData}
-      />
-      <Footer />
-    </Fragment>
+    <NewAnimalFeedingPageView
+      onClickSubmitButton={sendNewAnimalFeeding}
+      handleInputChange={handleFormDataInput}
+      requestSending={{
+        loading: state.loading,
+        error: state.error,
+        success: state.success,
+        alert: state.alertType ? ALERTS[state.alertType].type : state.alertType,
+        alertMessage: state.alertType ? ALERTS[state.alertType].message : state.alertType,
+      }}
+      formData={state.formData}
+      invalidFormData={state.invalidFormData}
+    />
   );
 };
 

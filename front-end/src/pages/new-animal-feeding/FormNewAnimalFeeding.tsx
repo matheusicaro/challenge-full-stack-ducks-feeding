@@ -121,7 +121,7 @@ const FormContainer = styled.form`
   border: 1px solid rgba(0, 0, 0, 0.23);
   padding: 50px 30px;
   border-radius: 5px;
-  margin: 0% 20%;
+  margin: 0% 10%;
 
   #form-input-time,
   .form-input-increments {

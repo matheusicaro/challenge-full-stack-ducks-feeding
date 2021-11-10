@@ -1,21 +1,19 @@
-import React, { Fragment } from 'react';
+import React from 'react';
+
+import { Grow as Transition, Paper } from '@material-ui/core';
 
 import AnimalFeedingDashboard from '../components/animal-feeding-dashboard';
-import Banner from '../components/banner';
-import Footer from '../components/footer';
-import Header from '../components/header';
 
 import Contextualization from './Contextualization';
 
 const HomePage: React.FC = (props) => {
   return (
-    <Fragment>
-      <Banner />
-      <Header />
-      <Contextualization />
-      <AnimalFeedingDashboard />
-      <Footer />
-    </Fragment>
+    <Transition in={true} timeout={2000}>
+      <Paper className="Global-alignment" elevation={3} component="article">
+        <Contextualization />
+        <AnimalFeedingDashboard />
+      </Paper>
+    </Transition>
   );
 };
 

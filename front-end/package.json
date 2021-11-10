@@ -3,6 +3,11 @@
   "version": "1.0.0",
   "description": "Front-end for Full Stack challenge Ducks Feeding.",
   "author": "Matheus Icaro",
+  "person": {
+    "author": "Matheus Icaro",
+    "email": "contact@matheusicarom",
+    "url": "www.matheusicaro.com"
+  },
   "license": "MIT",
   "private": false,
   "tags": [

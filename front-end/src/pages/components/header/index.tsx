@@ -29,7 +29,7 @@ const Header: React.FC<StateProps & DispatchProps> = (props) => {
       sessionExpiresAt={props.sessionExpiresAt || 0}
       user={props.user}
       currentPath={location.pathname}
-      handleTimeExpired={props.logout}
+      onLogout={props.logout}
     />
   );
 };

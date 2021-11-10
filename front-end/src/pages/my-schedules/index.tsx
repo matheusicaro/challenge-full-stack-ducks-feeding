@@ -1,14 +1,11 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 
-import { Link as LinkText, Typography } from '@material-ui/core';
+import { Link as LinkText, Typography, Grow as Transition, Paper } from '@material-ui/core';
 import styled from 'styled-components';
 
 import DuckWorkingImage from '../../assets/images/duck_crying_in_the_rain.gif';
 import DucklingHere from '../../assets/images/duckling_here.png';
 import PageUnderconstruct from '../../assets/images/page_underconstruct.png';
-import Banner from '../components/banner';
-import Footer from '../components/footer';
-import Header from '../components/header';
 
 const DOCUMENTATION_LINK = {
   PROJECT_DIAAGRAM: {
@@ -23,10 +20,8 @@ const DOCUMENTATION_LINK = {
 
 const MySchedules: React.FC = () => {
   return (
-    <Fragment>
-      <Banner />
-      <Header />
-      <Container>
+    <Transition in={true} timeout={2000}>
+      <Container className="Global-alignment" elevation={3} component="article">
         <img id="image-duck-working" src={DuckWorkingImage} alt="duck working" />
         <img id="image-page-underconstruct" src={PageUnderconstruct} alt="page underconstruct" width={350} />
         <img id="image-page-duckling" src={DucklingHere} alt="duckling here" />
@@ -35,7 +30,7 @@ const MySchedules: React.FC = () => {
           Page under construction
           <span>wait for news.</span>
         </Typography>
-        <Typography className="text paragraphs" variant="h5" component="p">
+        <Typography className="text paragraphs" variant="h6" component="p" style={{ paddingLeft: '20px' }}>
           Unfortunately this page is under construction, and not yet available. But don't be sad, you can find out more about the projectand
           what this page will look like in the future through the project documentation:
         </Typography>
@@ -49,14 +44,13 @@ const MySchedules: React.FC = () => {
           </Typography>
         </ul>
       </Container>
-      <Footer />
-    </Fragment>
+    </Transition>
   );
 };
 
 export default MySchedules;
 
-const Container = styled.article`
+const Container = styled(Paper)`
   display: grid;
   grid-template-columns: repeat(8, 1fr);
   grid-template-rows: repeat(1, 1fr);
@@ -111,5 +105,6 @@ const Container = styled.article`
   #image-page-duckling {
     grid-row: 2;
     height: 240px;
+    padding-right: 5px
   }
 `;

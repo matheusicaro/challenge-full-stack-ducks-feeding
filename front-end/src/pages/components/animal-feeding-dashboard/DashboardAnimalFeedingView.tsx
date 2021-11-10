@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { CircularProgress as Loading, IconButton as Button, Typography, Link as LinkText } from '@material-ui/core';
+import { CircularProgress as Loading, IconButton as Button, Typography, Link as LinkText, Grow as Transition } from '@material-ui/core';
 import Table from '@material-ui/core/Table';
 import TableContainer from '@material-ui/core/TableContainer';
 import { Add as AddIcon } from '@material-ui/icons';
@@ -48,19 +48,21 @@ const DashboardAnimalFeedingView: React.FC<Props> = (props) => {
     );
 
   return (
-    <Container>
-      <Link id="add-new-animal-feeding-button" to={ROUTES.NEW_ANIMAL_FEEDING.path}>
-        <Button aria-label="delete">
-          <AddIcon />
-        </Button>
-      </Link>
-      <TableContainer component={TableContainerStyled}>
-        <Table aria-label="simple table">
-          <TableHeader labels={props.headerLabels} />
-          <TableBody elements={props.animalFeeding} />
-        </Table>
-      </TableContainer>
-    </Container>
+    <Transition in={true} timeout={2000}>
+      <Container>
+        <Link id="add-new-animal-feeding-button" to={ROUTES.NEW_ANIMAL_FEEDING.path}>
+          <Button aria-label="delete">
+            <AddIcon />
+          </Button>
+        </Link>
+        <TableContainer component={TableContainerStyled}>
+          <Table aria-label="simple table">
+            <TableHeader labels={props.headerLabels} />
+            <TableBody elements={props.animalFeeding} />
+          </Table>
+        </TableContainer>
+      </Container>
+    </Transition>
   );
 };
 

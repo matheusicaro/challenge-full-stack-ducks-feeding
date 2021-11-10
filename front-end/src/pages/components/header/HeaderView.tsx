@@ -1,15 +1,16 @@
 import React, { Fragment } from 'react';
-import { Link } from 'react-router-dom';
 
-import { AppBar as AppBarMaterial, Button, Toolbar, Typography } from '@material-ui/core';
+import { AppBar as AppBarMaterial, Button, Grow as Transition, Toolbar, Tooltip } from '@material-ui/core';
 import { AccountCircle, ExitToApp } from '@material-ui/icons';
 import styled from 'styled-components';
 
+import DuckWalking from '../../../assets/images/duck_walking.gif';
 import { ROUTES } from '../../../routes';
 import { User } from '../../../store/ducks/login/types';
 
-import LoginDialog from './components/LoginDialog';
-import SingUpDialog from './components/SingUpDialog';
+import LoginButtonDialog from './components/LoginDialog';
+import RouterLink from './components/RouterLink';
+import SingUpButtonDialog from './components/SingUpDialog';
 import SessionTime from './SessionTime';
 
 type Props = {
@@ -17,7 +18,7 @@ type Props = {
   user: User | null;
   currentPath: string;
   sessionExpiresAt: number;
-  handleTimeExpired: () => void;
+  onLogout: () => void;
 };
 
 const TOTAL_MINIMUM_COLUMNS = 6;
@@ -27,77 +28,57 @@ const HeaderView: React.FC<Props> = (props) => {
   const totalLabels = routes.length > TOTAL_MINIMUM_COLUMNS ? routes.length : TOTAL_MINIMUM_COLUMNS;
 
   return (
-    <AppBarMaterial position="static" style={{ marginBottom: '5%' }}>
+    <AppBarMaterial position="static">
       <Toolbar>
-        <Container totalLabels={totalLabels}>
-          {routes.map(({ isPrivate, path, label }) => (
-            <RouterLink
-              key={path}
-              className={`haeder-label selected-${props.currentPath === path}`}
-              userAuthenticated={props.userLogged}
-              privateRoute={isPrivate}
-              path={path}
-              label={label}
-            ></RouterLink>
-          ))}
+        <Transition in={true} timeout={4000}>
+          <Container totalLabels={totalLabels}>
+            <Transition in={true} timeout={50000}>
+              <img src={DuckWalking} alt="duck walking" />
+            </Transition>
 
-          {props.userLogged && (
-            <Fragment>
-              <Button className="haeder-label header-last-b1" variant="outlined" color="inherit" onClick={console.log}>
-                <AccountCircle />
-              </Button>
-              <Button className="haeder-label header-last-b2" variant="outlined" color="inherit" onClick={console.log}>
-                <ExitToApp />
-              </Button>
-            </Fragment>
-          )}
+            {routes.map(({ isPrivate, path, label }) => (
+              <RouterLink
+                key={path}
+                className={`haeder-label haeder-label-${label.replace(' ', '')} selected-${props.currentPath === path}`}
+                userAuthenticated={props.userLogged}
+                privateRoute={isPrivate}
+                path={path}
+                label={label}
+              ></RouterLink>
+            ))}
 
-          {!props.userLogged && (
-            <Fragment>
-              <SingUpDialog className="header-button-singup" />
-              <LoginDialog className="header-button-login" />
-            </Fragment>
-          )}
+            {props.userLogged && (
+              <Fragment>
+                <Tooltip title={props.user ? `${props.user.name} - ${props.user.email}` : ''} aria-label="add">
+                  <Button className="haeder-label header-user-button" variant="outlined" color="inherit">
+                    <AccountCircle />
+                  </Button>
+                </Tooltip>
 
-          {props.userLogged && (
-            <SessionTime time={props.sessionExpiresAt} start={props.userLogged} handleTimeExpired={props.handleTimeExpired} />
-          )}
-        </Container>
+                <Tooltip title="log out" aria-label="add">
+                  <Button className="haeder-label header-user-logout" variant="outlined" color="inherit" onClick={props.onLogout}>
+                    <ExitToApp />
+                  </Button>
+                </Tooltip>
+              </Fragment>
+            )}
+
+            {!props.userLogged && (
+              <Fragment>
+                <SingUpButtonDialog className="header-button-singup" />
+                <LoginButtonDialog className="header-button-login" />
+              </Fragment>
+            )}
+
+            {props.userLogged && <SessionTime time={props.sessionExpiresAt} start={props.userLogged} handleTimeExpired={props.onLogout} />}
+          </Container>
+        </Transition>
       </Toolbar>
     </AppBarMaterial>
   );
 };
 
 export default HeaderView;
-
-const Label = ({ label }: { label: string }) => <Typography variant="h6">{label}</Typography>;
-
-const RouterLink = ({
-  privateRoute,
-  userAuthenticated,
-  path,
-  label,
-  className,
-}: {
-  privateRoute: boolean;
-  userAuthenticated: boolean;
-  path: string;
-  label: string;
-  className: string;
-}) => {
-  if (privateRoute && !userAuthenticated)
-    return (
-      <button className={`${className} actived-false`} disabled={true}>
-        <Label label={label} />
-      </button>
-    );
-
-  return (
-    <Link key={label} className={className} to={path}>
-      <Label label={label} />
-    </Link>
-  );
-};
 
 const Container = styled.section<{ totalLabels: number }>`
   display: grid;
@@ -106,6 +87,26 @@ const Container = styled.section<{ totalLabels: number }>`
   padding: 15px 160px;
   width: 100%;
 
+  & > img {
+    grid-column: 1;
+    position: fixed;
+    width: 65px;
+    border: 1px solid;
+    border-radius: 28px;
+  }
+
+  .haeder-label-Home {
+    grid-column: 2;
+  }
+
+  .haeder-label-NewFeeding {
+    grid-column: 3;
+  }
+
+  .haeder-label-MySchedules {
+    grid-column: 4;
+  }
+
   .haeder-label {
     justify-self: center;
     color: inherit;
@@ -113,8 +114,8 @@ const Container = styled.section<{ totalLabels: number }>`
   }
 
   .haeder-label,
-  .header-last-b2,
-  .header-last-b1 {
+  .header-user-logout,
+  .header-user-button {
     grid-row: 1 / 3;
     align-self: center;
   }
@@ -137,16 +138,16 @@ const Container = styled.section<{ totalLabels: number }>`
     opacity: 0.3;
   }
 
-  .header-last-b1 {
+  .header-user-button {
     grid-column: 6;
     justify-self: end;
   }
-  .header-last-b2 {
+  .header-user-logout {
     grid-column: 7;
     justify-self: start;
   }
 
-  .header-button-singup{
+  .header-button-singup {
     grid-column: 7;
     justify-self: end;
   }
@@ -154,8 +155,6 @@ const Container = styled.section<{ totalLabels: number }>`
     grid-column: 8;
     justify-self: start;
   }
-
-  
 
   #header-session-time {
     grid-column: 6;
