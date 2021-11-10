@@ -99,6 +99,17 @@ export default class AnimalFeedingService {
 
     if (invalidFeedingTime) return true;
 
+    const time = feeding.getFeeding().getTime();
+    const hour = parseInt(time.substring(0, time.indexOf(':')));
+    const minutes = parseInt(time.substring(time.indexOf(':') + 1, time.indexOf(' ')));
+    const meridiemTime = time.substring(time.indexOf(' ') + 1, time.length);
+
+    const isValidHour = hour > 0 && hour <= 12;
+    const isValidMinutes = minutes >= 0 && minutes <= 60 && minutes.toString().length === 2;
+    const isValidMeridiemTime = meridiemTime === 'AM' || meridiemTime === 'PM';
+
+    if (!isValidHour || !isValidMinutes || !isValidMeridiemTime) return true;
+
     const food = feeding.getFeeding().getFood();
     const invalidFood = StringUtil.isNullOrEmpty(food.getName()) || StringUtil.isNullOrEmpty(food.getType());
 
