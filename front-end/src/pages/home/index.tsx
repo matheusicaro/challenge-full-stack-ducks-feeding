@@ -1,18 +1,21 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
-import AnimalFeeding from '../components/animal-feeding';
+import AnimalFeedingDashboard from '../components/animal-feeding-dashboard';
 import Banner from '../components/banner';
 import Footer from '../components/footer';
 import Header from '../components/header';
 
+import Contextualization from './Contextualization';
+
 const HomePage: React.FC = (props) => {
   return (
-    <main>
+    <Fragment>
       <Banner />
       <Header />
-      <AnimalFeeding />
+      <Contextualization />
+      <AnimalFeedingDashboard />
       <Footer />
-    </main>
+    </Fragment>
   );
 };
 

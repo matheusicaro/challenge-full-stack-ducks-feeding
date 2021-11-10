@@ -14,6 +14,8 @@ const INITIAL_STATE: State = {
  */
 const AnimalFeedingReducer: Reducer<State, Action> = (state = INITIAL_STATE, action: Action) => {
   switch (action.type) {
+    case Types.ADD_NEW_ITEM:
+      return addNewItem(state, action);
     case Types.LOAD_REQUEST:
       return loadRequest(state);
     case Types.LOAD_SUCCESS:
@@ -28,6 +30,13 @@ const AnimalFeedingReducer: Reducer<State, Action> = (state = INITIAL_STATE, act
 /*
  * Handlers
  */
+
+const addNewItem = (state: State, action: AnyAction): State => ({
+  loading: false,
+  error: false,
+  data: [action.payload, ...state.data],
+});
+
 const loadSuccess = (state: State, action: AnyAction): State => ({
   loading: false,
   error: false,

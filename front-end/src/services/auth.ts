@@ -6,6 +6,11 @@ import { AuthToken } from './types';
 const TOKEN_KEY = 'app_control_token';
 const USER_KEY = 'app_control_user';
 
+/**
+ * Function to get token stored in storage service
+ *
+ * @return {AuthToken}
+ */
 const getTokenInLocalStorage = (): AuthToken | null => {
   try {
     return StorageService.get<AuthToken>(TOKEN_KEY);
@@ -19,6 +24,11 @@ const isTokenExpired = (token: AuthToken) => {
   return token && new Date(token.expires_in).getTime() < Date.now();
 };
 
+/**
+ * Method responsible for returning validation if token stores in local store is valid and not expired
+ *
+ * @return {boolean}
+ */
 const isAuthenticated = (): boolean => {
   const token = getTokenInLocalStorage();
 

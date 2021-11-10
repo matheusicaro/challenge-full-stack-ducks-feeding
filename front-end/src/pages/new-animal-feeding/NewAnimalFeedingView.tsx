@@ -1,38 +1,54 @@
 import React from 'react';
 
-import { NewAnimalFeeding } from '../../services/types';
+import { Typography } from '@material-ui/core';
+import { Alert, AlertTitle } from '@material-ui/lab';
+import styled from 'styled-components';
+
+import FormNewAnimalFeeding from './FormNewAnimalFeeding';
+import { NewFeedingFormData, HandleInputChangeType } from './types';
 
 type Props = {
-  submitFormData: (data: NewAnimalFeeding, animal: string) => void;
+  onClickSubmitButton: () => void;
+  handleInputChange: HandleInputChangeType;
+  requestSending: {
+    success: boolean;
+    error: boolean;
+    loading: boolean;
+    alert?: 'success' | 'error';
+    alertMessage?: string;
+  };
+  invalidFormData: boolean;
+  formData: NewFeedingFormData;
 };
 
 const NewAnimalFeedingPageView: React.FC<Props> = (props) => {
-  const buildNewAnimalMeeding = () => ({
-    animal: {
-      quantity: 280,
-      name: 'DUCK',
-    },
-    feeding: {
-      food: {
-        name: 'CORN',
-        type: 'CEREAL',
-      },
-      time: '12:00 PM',
-      location: 'Vancouver, BC, Canada',
-      quantity_kilos: 2.525, // eslint-disable-line @typescript-eslint/camelcase
-    },
-    user: {
-      email: 'user@email.com',
-      name: 'User Name',
-    },
-  });
-
   return (
-    <main>
-      <h1>FORM </h1>
-      <button onClick={() => props.submitFormData(buildNewAnimalMeeding(), 'DUCK')}>submit</button>
-    </main>
+    <Container>
+      <Typography className="Global-alignment" variant="h3" align="center" color="primary" style={{ marginBottom: '35px' }}>
+        How are your animals fed ?
+      </Typography>
+      <FormNewAnimalFeeding
+        formData={props.formData}
+        handleInputChange={props.handleInputChange}
+        invalidFormData={props.invalidFormData}
+        loading={props.requestSending.loading}
+        onClickSubmitButton={props.onClickSubmitButton}
+      >
+        {props.requestSending.alert && (
+          <Alert id="form-alert" severity={props.requestSending.alert} component="section">
+            <AlertTitle>{props.requestSending.alert}</AlertTitle>
+            {props.requestSending.alertMessage}
+          </Alert>
+        )}
+      </FormNewAnimalFeeding>
+    </Container>
   );
 };
 
 export default NewAnimalFeedingPageView;
+
+const Container = styled.article`
+  #form-alert {
+    grid-column: 1 / 4;
+  }
+`;
