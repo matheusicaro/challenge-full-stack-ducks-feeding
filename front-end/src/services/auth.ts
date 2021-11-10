@@ -15,17 +15,22 @@ const getTokenInLocalStorage = (): AuthToken | null => {
   }
 };
 
-const isTokenExpired = (token: AuthToken) => token && new Date(token.expires_in).getTime() < Date.now();
+const isTokenExpired = (token: AuthToken) => {
+  return token && new Date(token.expires_in).getTime() < Date.now();
+};
 
 const isAuthenticated = (): boolean => {
   const token = getTokenInLocalStorage();
 
-  if (token === null) return false;
+  const isAuthenticated = token !== null && !!token.expires_in && !isTokenExpired(token);
 
-  return !!token.expires_in && !isTokenExpired(token);
+  if (!isAuthenticated) StorageService.delete(TOKEN_KEY);
+
+  return isAuthenticated;
 };
 
 const getToken = (): string | undefined => getTokenInLocalStorage()?.token;
+const getTokeneExpirationTime = (): number | null => getTokenInLocalStorage()?.expires_in || null;
 
 const getUser = (): User | null => {
   try {
@@ -52,6 +57,7 @@ const AuthService = {
   isAuthenticated,
   getUser,
   getToken,
+  getTokeneExpirationTime,
   logout,
   saveToken,
   saveUser,

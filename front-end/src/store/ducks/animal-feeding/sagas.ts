@@ -27,6 +27,34 @@ export function* loadAnimalFeedingData() {
   }
 }
 
+/**
+ * Function to remove leading zeros for decimal places greater than 3
+ *
+ * @param  {number} number - example input 45.20000000
+ * @returns {string} - 45.200
+ */
+const removeInsignificantTrailingZeros = (number: number) => number.toFixed(3).replace(/(\.0+|0+)$/, '');
+
+/**
+ * Function to format numeric values to string with desired formatted in kilograms.
+ *
+ * @param  {number} quantityKilos - example input 1245.205600
+ * @returns {string} - 1245.205 kg
+ */
+const formatQuantityKilos = (quantityKilos: number): string => {
+  const numberAsFloat = quantityKilos ? parseFloat(quantityKilos.toString()).toFixed(3) : '';
+
+  if (!numberAsFloat) return '-';
+
+  return `${removeInsignificantTrailingZeros(parseFloat(numberAsFloat))} kg`;
+};
+
+/**
+ * Role responsible for creating model from the right of the integration api
+ *
+ * @param  {Array<AnimalFeedingDTO>} animalFeedingDTOs
+ * @returns {Array<AnimalFeeding>}
+ */
 const buildAnimalFeedingFromDTO = (animalFeedingDTOs: Array<AnimalFeedingDTO>): Array<AnimalFeeding> => {
   const buildAnimalFeeding = (dto: AnimalFeedingDTO): AnimalFeeding => ({
     id: dto.id,
@@ -35,6 +63,7 @@ const buildAnimalFeedingFromDTO = (animalFeedingDTOs: Array<AnimalFeedingDTO>): 
     feeding: {
       ...dto.feeding,
       quantityKilos: dto.feeding.quantity_kilos,
+      quantityKilosFormatted: formatQuantityKilos(dto.feeding.quantity_kilos),
     },
     user: dto.user,
   });

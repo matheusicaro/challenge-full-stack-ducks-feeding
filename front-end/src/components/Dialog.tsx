@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { CircularProgress } from '@material-ui/core';
+import { CircularProgress as Loading } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import DialogMaterial from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -32,6 +32,12 @@ type Props = {
   title: string;
 };
 
+/**
+ * Generic component for dialog behaviors, providing dynamic forms through its properties
+ *
+ * @param  {number}
+ * @param  {DialogMaterial}
+ */
 const Dialog: React.FC<Props> = (props: Props) => {
   const [open, setOpen] = React.useState(false);
   const [submited, setSubmited] = React.useState(false);
@@ -83,7 +89,7 @@ const Dialog: React.FC<Props> = (props: Props) => {
           ))}
         </DialogContent>
         <Section>
-          {props.loading && <CircularProgress className="dialog-loading" />}
+          {props.loading && <Loading className="dialog-loading" />}
           <DialogActions className="dialog-buttons">
             <Button onClick={handleClose} color="primary">
               Cancel

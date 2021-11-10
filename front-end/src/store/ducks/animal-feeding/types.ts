@@ -4,6 +4,7 @@ import { AnyAction } from 'redux';
  * Action Types
  */
 export enum Types {
+  ADD_NEW_ITEM = '@animalFeeding/ADD_NEW_ITEM',
   LOAD_REQUEST = '@animalFeeding/LOAD_RESQUEST',
   LOAD_SUCCESS = '@animalFeeding/LOAD_SUCCESS',
   LOAD_FAILURE = '@animalFeeding/LOAD_FAILURE',
@@ -37,6 +38,7 @@ export type AnimalFeeding = {
     time: string;
     location: string;
     quantityKilos: number;
+    quantityKilosFormatted: string;
   };
   user: {
     email: string;

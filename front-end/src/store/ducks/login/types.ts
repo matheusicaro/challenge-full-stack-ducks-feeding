@@ -15,6 +15,7 @@ export type User = {
 
 export type State = {
   readonly authenticated: boolean;
+  readonly sessionExpiresAt: number | null;
   readonly accessDenied: boolean;
   readonly user: User | null;
   readonly loading: boolean;
@@ -25,6 +26,7 @@ export type Payload = {
   authenticated: boolean;
   user: User;
   accessDenied: boolean;
+  tokenExpireIn: number;
 };
 
 export interface PayloadLoadRequest extends AnyAction {

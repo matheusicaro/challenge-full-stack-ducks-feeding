@@ -3,7 +3,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import packageJSON from '../../../../package.json';
-import LogoBackground from '../../assets/images/logo_background.png';
+import LogoBackground from '../../../assets/images/logo_background.png';
 
 /**
  * Banner component with introduction and general application information

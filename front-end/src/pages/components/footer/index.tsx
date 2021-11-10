@@ -23,9 +23,8 @@ export default Footer;
 
 const Container = styled.footer`
   text-align: center;
-  position: absolute;
-  bottom: 40px;
   width: 100%;
+  padding: 40px 0;
 
   & > a {
     text-decoration: auto;

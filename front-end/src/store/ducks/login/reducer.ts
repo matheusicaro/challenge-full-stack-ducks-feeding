@@ -6,6 +6,7 @@ import { Types, State, Action } from './types';
 
 const INITIAL_STATE: State = {
   authenticated: AuthService.isAuthenticated(),
+  sessionExpiresAt: AuthService.getTokeneExpirationTime(),
   user: AuthService.getUser(),
   accessDenied: false,
   loading: false,
@@ -37,6 +38,7 @@ const loadSuccess = (state: State, action: Action): State => ({
   loading: false,
   error: false,
   ...action.payload,
+  sessionExpiresAt: action.payload.tokenExpireIn,
   user: {
     ...action.payload.user,
   },
