@@ -7,7 +7,6 @@
 3. [Proposed solution and Architecture](#proposed-solution-and-architecture) 
 4. [Project Screen Shot](#project-screen-shot)
 5. [Installation and Setup Instructions](#installation-and-setup-instructions)
-7. [Project Specifications](#project-specifications)
 
 ## Intro:
 
@@ -41,14 +40,16 @@ You may use any language or framework you choose. We prefer that you install the
 - A link to the working application
 - Access to your Git repository (please commit regularly - we find your commit history an interesting indicator as to how you like to work).
 - A short written document outlining:
-  - **YOUR APPROACH TO THE PROBLEM**: <br>Answered in [this topic]()
+  - **YOUR APPROACH TO THE PROBLEM**: <br>Answered in [this topic](https://github.com/matheusicaro/challenge-full-stack-ducks-feeding#proposed-solution-and-architecture)
   - **TECHNOLOGIES CHOSEN (AND WHY)**: <br>
        *The project's technologies can be visualized in a general way in [this diagram](https://github.com/matheusicaro/challenge-full-stack-ducks-feeding/blob/master/documentation/architecture-diagram.drawio.png). I chose to Use AWS and its resources for two reasons: <br>
               1. Availability and simplification of integration between all the necessary components to develop the solution, such as an environment for static files, web server and database. For all resources, even for a developer without DevOps/Cloud experience, it is possible to deploy and continue integration in a simpler way than other platforms
               2. Due to my background, which has a certain domain of AWS tools which could bring me development speed.
        <br><br>For application, I chose to use React and Node.js because it simply works in the same language which gave me a speed gain in development for configurations and programming in general.
        <br><br>For the database, as the entities are known, they are well defined (values and behaviors), and there is still a relationship between them, so I opted for a relational database using PostgreSQL.
-       
+     **More about the technologies for [front-end](https://github.com/matheusicaro/challenge-full-stack-ducks-feeding/tree/master/front-end#project-specifications)
+     **[back-end](https://github.com/matheusicaro/challenge-full-stack-ducks-feeding/tree/master/back-end#project-specifications)
+
   - **A HIGH-LEVEL COMPONENT DIAGRAM**: <br>Answered in [this topic](https://github.com/matheusicaro/challenge-full-stack-ducks-feeding/tree/master/documentation)
   - **A DATABASE MODEL DIAGRAM**: <br>Answered in [this topic](https://github.com/matheusicaro/challenge-full-stack-ducks-feeding/blob/master/documentation/database-schema.png)
   - **ROUGHLY HOW MANY HOURS YOU SPENT**:
@@ -77,8 +78,8 @@ As a solution proposal, I first started working on the desired architecture and 
 
 Clone down this repository. You will need `node` and `npm` installed globally on your machine.  
 
-1. clone the repository: `git clone https://github.com/matheusicaro/coderbyte-full-stack-project.git`
-2. Run the **back-end** following [these steps](https://github.com/matheusicaro/coderbyte-full-stack-project/tree/master/back-end#installation-and-setup-instructions)
-3. Run the **front-end** following [these steps](https://github.com/matheusicaro/coderbyte-full-stack-project/tree/master/front-end#installation-and-setup-instructions)
+1. clone the repository: `git clone https://github.com/matheusicaro/challenge-full-stack-ducks-feeding.git`
+2. Run the **back-end** following [these steps](https://github.com/matheusicaro/challenge-full-stack-ducks-feeding/tree/master/back-end#installation-and-setup-instructions)
+3. Run the **front-end** following [these steps](https://github.com/matheusicaro/challenge-full-stack-ducks-feeding/tree/master/front-end#installation-and-setup-instructions)
 4. have fun!
 

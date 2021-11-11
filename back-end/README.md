@@ -1,6 +1,6 @@
 ## BUILDING THE POWERBALL LOTTERY - REST API FOR THE BACK-END CHALLENGE FROM CODILITY.
 
-[![license](https://img.shields.io/github/license/DAVFoundation/captain-n3m0.svg?style=flat-square)](https://github.com/matheusicaro/coderbyte-full-stack-project/blob/master/LICENSE)
+[![license](https://img.shields.io/github/license/DAVFoundation/captain-n3m0.svg?style=flat-square)](https://github.com/matheusicaro/challenge-full-stack-ducks-feeding/blob/master/LICENSE)
 
 ## Summary:
 
