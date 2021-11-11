@@ -11,6 +11,11 @@
 
 ## Intro:
 
+Full stack challenge to develop a web application. <br>
+It was suggested to use stack with Back-end in Node.js, Front-end in React.js and PostgreSQL for the database bar.
+- [BACK-END](https://github.com/matheusicaro/challenge-full-stack-ducks-feeding/tree/master/back-end)
+- [FRONT-END](https://github.com/matheusicaro/challenge-full-stack-ducks-feeding/tree/master/front-end)
+
 ## challenge
 
 ### The Assignment
@@ -36,24 +41,44 @@ You may use any language or framework you choose. We prefer that you install the
 - A link to the working application
 - Access to your Git repository (please commit regularly - we find your commit history an interesting indicator as to how you like to work).
 - A short written document outlining:
-  - Your approach to the problem
-  - Technologies chosen (and why)
-  - A high-level component diagram
-  - A database model diagram
-  - Roughly how many hours you spent
+  - **YOUR APPROACH TO THE PROBLEM**: <br>Answered in [this topic]()
+  - **TECHNOLOGIES CHOSEN (AND WHY)**: <br>
+       *The project's technologies can be visualized in a general way in [this diagram](https://github.com/matheusicaro/challenge-full-stack-ducks-feeding/blob/master/documentation/architecture-diagram.drawio.png). I chose to Use AWS and its resources for two reasons: <br>
+              1. Availability and simplification of integration between all the necessary components to develop the solution, such as an environment for static files, web server and database. For all resources, even for a developer without DevOps/Cloud experience, it is possible to deploy and continue integration in a simpler way than other platforms
+              2. Due to my background, which has a certain domain of AWS tools which could bring me development speed.
+       <br><br>For application, I chose to use React and Node.js because it simply works in the same language which gave me a speed gain in development for configurations and programming in general.
+       <br><br>For the database, as the entities are known, they are well defined (values and behaviors), and there is still a relationship between them, so I opted for a relational database using PostgreSQL.
+       
+  - **A HIGH-LEVEL COMPONENT DIAGRAM**: <br>Answered in [this topic](https://github.com/matheusicaro/challenge-full-stack-ducks-feeding/tree/master/documentation)
+  - **A DATABASE MODEL DIAGRAM**: <br>Answered in [this topic](https://github.com/matheusicaro/challenge-full-stack-ducks-feeding/blob/master/documentation/database-schema.png)
+  - **ROUGHLY HOW MANY HOURS YOU SPENT**:
+       <br>*Approximately how many hours did you spend: Approximately 13 hours, with the following definition and its intervals:
+       First day: development of architecture and diagrams and configuration of repository, 2hr
+       Second day: backend service development and its business rules, 4hr
+       Third day: Front-end interface development, 5hr
+       day four: start of cloud configuration configuration and interface adjustments and improvements, 2hr
 
 ---
 
 ## Proposed solution and Architecture
 
-### Proposed solution 
+As a solution proposal, I first started working on the desired architecture and the diagrams that detail the project proposal can be consulted below:
 
-### Architecture
-
+- [Project architecture diagram](https://github.com/matheusicaro/challenge-full-stack-ducks-feeding/tree/master/documentation)
+- [Proposed web application interface diagram](https://github.com/matheusicaro/challenge-full-stack-ducks-feeding/tree/master/documentation)
+- [Sequence diagram](https://github.com/matheusicaro/challenge-full-stack-ducks-feeding/tree/master/documentation) for rules and flow of integrations
+- [Database schema](https://github.com/matheusicaro/challenge-full-stack-ducks-feeding/tree/master/documentation) demonstrating entities and their relationships
 
 ## Project Screen Shot
 
+... pending
+
 ## Installation and Setup Instructions
 
-## Project Specifications
+Clone down this repository. You will need `node` and `npm` installed globally on your machine.  
+
+1. clone the repository: `git clone https://github.com/matheusicaro/coderbyte-full-stack-project.git`
+2. Run the **back-end** following [these steps](https://github.com/matheusicaro/coderbyte-full-stack-project/tree/master/back-end#installation-and-setup-instructions)
+3. Run the **front-end** following [these steps](https://github.com/matheusicaro/coderbyte-full-stack-project/tree/master/front-end#installation-and-setup-instructions)
+4. have fun!
 
