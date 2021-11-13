@@ -1,8 +1,6 @@
 import { action } from 'typesafe-actions';
 
-import { AnimalFeedingDTO } from '../../../services/types';
-
-import { Types, Payload } from './types';
+import { Types, Payload, AnimalFeeding } from './types';
 
 /**
  * Actions change customer ip state in store
@@ -15,4 +13,4 @@ import { Types, Payload } from './types';
 export const loadRequest = () => action(Types.LOAD_REQUEST);
 export const loadSuccess = (data: Payload) => action(Types.LOAD_SUCCESS, data);
 export const loadFailure = () => action(Types.LOAD_FAILURE);
-export const addNewItem = (dto: AnimalFeedingDTO) => action(Types.ADD_NEW_ITEM, dto);
+export const addNewItem = (dto: AnimalFeeding) => action(Types.ADD_NEW_ITEM, dto);

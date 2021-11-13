@@ -37,10 +37,14 @@ const MySchedules: React.FC = () => {
 
         <ul className="text paragraphs" style={{ alignSelf: 'end' }}>
           <Typography variant="h6" component="li">
-            <LinkText href={DOCUMENTATION_LINK.PROJECT_DIAAGRAM.url}>{DOCUMENTATION_LINK.PROJECT_DIAAGRAM.text}</LinkText>
+            <LinkText target="_blank" rel="noopener" href={DOCUMENTATION_LINK.PROJECT_DIAAGRAM.url}>
+              {DOCUMENTATION_LINK.PROJECT_DIAAGRAM.text}
+            </LinkText>
           </Typography>
           <Typography className="text" variant="h6" component="li">
-            <LinkText href={DOCUMENTATION_LINK.INTERFACE_DIAAGRAM.url}>{DOCUMENTATION_LINK.INTERFACE_DIAAGRAM.text}</LinkText>
+            <LinkText target="_blank" rel="noopener" href={DOCUMENTATION_LINK.INTERFACE_DIAAGRAM.url}>
+              {DOCUMENTATION_LINK.INTERFACE_DIAAGRAM.text}
+            </LinkText>
           </Typography>
         </ul>
       </Container>
@@ -105,6 +109,6 @@ const Container = styled(Paper)`
   #image-page-duckling {
     grid-row: 2;
     height: 240px;
-    padding-right: 5px
+    padding-right: 5px;
   }
 `;

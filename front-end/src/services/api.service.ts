@@ -2,7 +2,8 @@ import axios, { AxiosRequestConfig } from 'axios';
 
 import environments from '../environments';
 
-import { AnimalFeedingDTO, NewAnimalFeeding, ResponseApi } from './types';
+import AuthService from './auth';
+import { AnimalFeedingDTO, AuthToken, NewAnimalFeeding, ResponseApi } from './types';
 
 /**
  * Class for integration with application backend
@@ -12,9 +13,10 @@ const API = axios.create({
   baseURL: environments.baseURL,
 });
 
-const getConfig = (headers = {}) => {
+const getConfig = (headers = {}): AxiosRequestConfig => {
   return {
     headers: {
+      'x-api-token': AuthService.getToken(),
       Accept: 'application/json',
       ...headers,
     },
@@ -62,7 +64,7 @@ const get = async <T>(path: string, config?: AxiosRequestConfig): Promise<Respon
  *
  * @returns Response: returns the requested response with date of type T which must be absent in case of error
  */
-const post = async <T>(path: string, data?: any, config?: AxiosRequestConfig): Promise<{ status: number; data: T; message?: string }> => {
+const post = async <T>(path: string, data?: any, config?: AxiosRequestConfig): Promise<ResponseApi<T>> => {
   const start = Date.now();
 
   return new Promise((resolve, reject) => {
@@ -79,20 +81,20 @@ const post = async <T>(path: string, data?: any, config?: AxiosRequestConfig): P
  *
  */
 const ApiService = {
-  getAnimalFeeding: (animal: string) => {
-    return get<AnimalFeedingDTO>('/animals/feeding', getConfig({ animal }));
+  getAnimalFeeding: (animal: string): Promise<ResponseApi<Array<AnimalFeedingDTO>>> => {
+    return get<Array<AnimalFeedingDTO>>('/animals/feeding', getConfig({ animal }));
   },
 
-  saveAnimalFeeding: (newAnimalFeeding: NewAnimalFeeding, animal: string) => {
-    return post<AnimalFeedingDTO>('/animals/feeding', { newAnimalFeeding }, getConfig({ animal }));
+  saveAnimalFeeding: (newAnimalFeeding: NewAnimalFeeding, animal: string): Promise<ResponseApi<AnimalFeedingDTO>> => {
+    return post<AnimalFeedingDTO>('/animals/feeding', newAnimalFeeding, getConfig({ animal }));
   },
 
-  login: (email: string, password: string) => {
-    return post<AnimalFeedingDTO>('/user/login', { email, password }, getConfig({}));
+  login: (email: string, password: string): Promise<ResponseApi<AuthToken>> => {
+    return post<AuthToken>('/user/login', { email, password }, getConfig({}));
   },
 
-  singup: (name: string, email: string, password: string) => {
-    return post<AnimalFeedingDTO>('/user/singup', { name, email, password }, getConfig({}));
+  singup: (name: string, email: string, password: string): Promise<ResponseApi<void>> => {
+    return post<void>('/user/singup', { name, email, password }, getConfig({}));
   },
 };
 

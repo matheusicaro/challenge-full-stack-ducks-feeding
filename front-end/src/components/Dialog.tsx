@@ -23,7 +23,7 @@ type Props = {
   alertMessage?: string;
   buttonLabel: string;
   className?: string;
-  disableSubmitButtonAfterSubmission?: boolean;
+  disableSubmitButton?: boolean;
   handleSubmitData: (data: any) => void;
   loading?: boolean;
   submitButtonLabel: string;
@@ -40,7 +40,6 @@ type Props = {
  */
 const Dialog: React.FC<Props> = (props: Props) => {
   const [open, setOpen] = React.useState(false);
-  const [submited, setSubmited] = React.useState(false);
   const [formData, setFormData] = React.useState(initialStateFormData(props.textInputs));
 
   const handleClickOpen = () => {
@@ -53,7 +52,6 @@ const Dialog: React.FC<Props> = (props: Props) => {
 
   const onClickSubmit = () => {
     props.handleSubmitData(formData);
-    !props.disableSubmitButtonAfterSubmission || setSubmited(true);
   };
 
   const handleTextFildOnChange = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
@@ -94,7 +92,7 @@ const Dialog: React.FC<Props> = (props: Props) => {
             <Button onClick={handleClose} color="primary">
               Cancel
             </Button>
-            <Button onClick={onClickSubmit} color="primary" disabled={submited}>
+            <Button onClick={onClickSubmit} color="primary" disabled={props.disableSubmitButton}>
               {props.submitButtonLabel}
             </Button>
           </DialogActions>

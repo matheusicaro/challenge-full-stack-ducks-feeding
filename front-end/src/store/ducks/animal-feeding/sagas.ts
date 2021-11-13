@@ -18,8 +18,8 @@ export function* loadAnimalFeedingData() {
     if (!response || response.status !== 200) throw Error('Error when requesting external data');
 
     const animalFeedingDTOs = (response as ResponseApi<Array<AnimalFeedingDTO>>).data;
-
-    const payload = buildAnimalFeedingFromDTO(animalFeedingDTOs);
+    const mostRecentCreation = (a:AnimalFeeding , b:AnimalFeeding ) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+    const payload = animalFeedingDTOs.map(buildAnimalFeedingFrom).sort(mostRecentCreation);
 
     yield put(loadSuccess(payload));
   } catch (err) {
@@ -52,21 +52,17 @@ const formatQuantityKilos = (quantityKilos: number): string => {
 /**
  * Role responsible for creating model from the right of the integration api
  *
- * @param  {Array<AnimalFeedingDTO>} animalFeedingDTOs
- * @returns {Array<AnimalFeeding>}
+ * @param  {AnimalFeedingDTO} animalFeedingDTO
+ * @returns {AnimalFeeding}
  */
-const buildAnimalFeedingFromDTO = (animalFeedingDTOs: Array<AnimalFeedingDTO>): Array<AnimalFeeding> => {
-  const buildAnimalFeeding = (dto: AnimalFeedingDTO): AnimalFeeding => ({
-    id: dto.id,
-    animal: dto.animal,
-    createdAt: new Date(dto.created_at),
-    feeding: {
-      ...dto.feeding,
-      quantityKilos: dto.feeding.quantity_kilos,
-      quantityKilosFormatted: formatQuantityKilos(dto.feeding.quantity_kilos),
-    },
-    user: dto.user,
-  });
-
-  return animalFeedingDTOs.map(buildAnimalFeeding);
-};
+export const buildAnimalFeedingFrom = (dto: AnimalFeedingDTO): AnimalFeeding => ({
+  id: dto.id,
+  animal: dto.animal,
+  createdAt: new Date(dto.created_at),
+  feeding: {
+    ...dto.feeding,
+    quantityKilos: dto.feeding.quantity_kilos,
+    quantityKilosFormatted: formatQuantityKilos(dto.feeding.quantity_kilos),
+  },
+  user: dto.user,
+});

@@ -1,9 +1,14 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 
+import { bindActionCreators, Dispatch } from 'redux';
+
 import ApiService from '../../services/api.service';
 import { AnimalFeedingDTO, NewAnimalFeeding } from '../../services/types';
 import { ApplicationState } from '../../store';
+import { addNewItem } from '../../store/ducks/animal-feeding/actions';
+import { buildAnimalFeedingFrom } from '../../store/ducks/animal-feeding/sagas';
+import { AnimalFeeding } from '../../store/ducks/animal-feeding/types';
 import { User } from '../../store/ducks/login/types';
 
 import NewAnimalFeedingPageView from './NewAnimalFeedingView';
@@ -13,11 +18,15 @@ type StateProps = {
   user: User | null;
 };
 
+type DispatchProps = {
+  addNewItem: (data: AnimalFeeding) => void;
+};
+
 /**
  * Stateful component for control and management of new animal feeding breeding
  *
  */
-const NewAnimalFeedingPage: React.FC<StateProps> = (props) => {
+const NewAnimalFeedingPage: React.FC<StateProps & DispatchProps> = (props) => {
   const [state, setState] = useState<NewAnimalFeedingState>(initialState());
 
   const handleFormDataInput: HandleInputChangeType = (value, field) => {
@@ -32,8 +41,10 @@ const NewAnimalFeedingPage: React.FC<StateProps> = (props) => {
 
   const onError = () => setState((prev) => ({ ...prev, loading: false, error: true, alertType: 'error' }));
 
-  const onSuccess = ({ data }: { data: AnimalFeedingDTO }) =>
+  const onSuccess = ({ data }: { data: AnimalFeedingDTO }) => {
+    props.addNewItem(buildAnimalFeedingFrom(data));
     setState((prev) => ({ ...prev, data, loading: false, success: true, alertType: 'success', formData: initialState().formData }));
+  };
 
   const sendNewAnimalFeeding = () => {
     if (!state.loading || !state.error) setState((prev) => ({ ...prev, loading: true, error: false, success: false }));
@@ -64,7 +75,9 @@ const mapStateToProps = (state: ApplicationState) => ({
   user: state.auth.user,
 });
 
-export default connect(mapStateToProps)(NewAnimalFeedingPage);
+const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators({ addNewItem }, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(NewAnimalFeedingPage);
 
 const initialState = (): NewAnimalFeedingState => ({
   error: false,

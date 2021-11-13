@@ -60,10 +60,17 @@ const FormNewAnimalFeeding: React.FC<Props> = (props) => {
         />
       </section>
 
-      <TextField name="foodName" label={`What food the ${props.formData.animalName}s are fed?`} type="text" onChange={handleInputChange} />
+      <TextField
+        name="foodName"
+        value={props.formData.foodName}
+        label={`What food the ${props.formData.animalName}s are fed?`}
+        type="text"
+        onChange={handleInputChange}
+      />
 
       <TextField
         name="foodType"
+        value={props.formData.foodType}
         label={`What kind of food the ${props.formData.animalName}s are fed?`}
         type="text"
         onChange={handleInputChange}
@@ -73,6 +80,7 @@ const FormNewAnimalFeeding: React.FC<Props> = (props) => {
         <InputLabel>{`How much food the ${props.formData.animalName}s are fed?`}</InputLabel>
         <Input
           name="quantityKilos"
+          value={props.formData.quantityKilos}
           onChange={handleInputChange}
           inputProps={{ min: '0', type: 'number' }}
           endAdornment={
@@ -86,6 +94,7 @@ const FormNewAnimalFeeding: React.FC<Props> = (props) => {
       <section id="form-input-location">
         <TextField
           name="location"
+          value={props.formData.location}
           label={`Where the ${props.formData.animalName}s are fed?`}
           type="text"
           placeholder="Example: Vancouver, BC, Canada"

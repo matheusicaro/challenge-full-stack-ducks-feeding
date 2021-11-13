@@ -71,8 +71,6 @@ export default DashboardAnimalFeedingView;
 const Container = styled.section`
   display: flex;
   flex-direction: column;
-  margin: 2% 10%;
-  max-width: 80%;
 
   #add-new-animal-feeding-button {
     align-self: end;

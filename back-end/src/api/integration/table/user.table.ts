@@ -14,7 +14,7 @@ export default class UserTable {
     this.email = dataReceived['email'];
     this.name = dataReceived['name'];
     this.password = dataReceived['password'];
-    this.created_at = dataReceived['created_a'];
+    this.created_at = dataReceived['created_at'];
   }
 
   public static builder(): UserTable {

@@ -23,7 +23,7 @@ app.set('env', environment.NODE_ENV);
 app.set('port', environment.PORT);
 app.set('host', environment.HOST_NAME);
 
-app.use(cors(corsOptions));
+app.use(cors());
 app.use(express.json());
 app.use(morgan('common'));
 app.use(bodyParser.urlencoded({ extended: true }));

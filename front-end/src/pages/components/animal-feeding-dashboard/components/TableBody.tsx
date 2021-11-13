@@ -6,6 +6,7 @@ import TableBodyComponent from '@material-ui/core/TableBody';
 import { AnimalFeeding } from '../../../../store/ducks/animal-feeding/types';
 
 import { StyledTableRow } from './styles';
+import styled from 'styled-components';
 
 type Props = {
   elements: Array<AnimalFeeding>;
@@ -16,10 +17,10 @@ type Props = {
  *
  */
 const TableBody: React.FC<Props> = ({ elements }) => (
-  <TableBodyComponent>
+  <Container>
     {elements.map((e) => (
       <StyledTableRow key={e.id + e.createdAt}>
-        <TableCell align="center">{e.createdAt.toUTCString()}</TableCell>
+        <TableCell align="center">{e.createdAt.toLocaleString()}</TableCell>
         <TableCell align="center">{e.user.name}</TableCell>
         <TableCell align="center">{e.user.email}</TableCell>
         <TableCell align="center">{e.animal.quantity}</TableCell>
@@ -30,7 +31,11 @@ const TableBody: React.FC<Props> = ({ elements }) => (
         <TableCell align="center">{e.feeding.location}</TableCell>
       </StyledTableRow>
     ))}
-  </TableBodyComponent>
+  </Container>
 );
 
 export default TableBody;
+
+const Container = styled(TableBodyComponent)`
+  white-space: nowrap;
+`;

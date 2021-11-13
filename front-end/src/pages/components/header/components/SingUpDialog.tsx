@@ -26,12 +26,13 @@ const initialState = (): State => ({ success: false, error: false, loading: fals
 const SingUpDialog: React.FC<Props> = (props: Props) => {
   const [state, setState] = useState<State>(initialState());
 
-  const error = () =>
+  const error = (message?: string) =>
     setState((prev) => ({
       ...prev,
       error: true,
       loading: false,
-      message: MESSAGE.REQUESTING_ERROR,
+      success: false,
+      message: message || MESSAGE.REQUESTING_ERROR,
       alert: 'error',
     }));
 
@@ -53,8 +54,8 @@ const SingUpDialog: React.FC<Props> = (props: Props) => {
       if (!state.loading) setState((prev) => ({ ...prev, loading: true }));
 
       ApiService.singup(name, email, password)
-        .then((response) => (response.status === 204 ? success() : error()))
-        .catch(error);
+        .then((response) => (response.status === 204 ? success() : error(response.message)))
+        .catch((response) => error(response.message));
     }
   };
 
@@ -69,7 +70,6 @@ const SingUpDialog: React.FC<Props> = (props: Props) => {
       loading={state.loading}
       alert={state.alert}
       alertMessage={state.message}
-      disableSubmitButtonAfterSubmission={true}
       textInputs={[
         {
           dataKey: 'name',
