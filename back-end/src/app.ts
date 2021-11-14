@@ -11,11 +11,13 @@ import appRouters from './routes/app.routes';
 import environment from './config/environment';
 
 const corsOptions: cors.CorsOptions = {
-  allowedHeaders: ['Authorization', 'Content-Type'],
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
+  allowedHeaders: ['Authorization', 'Content-Type', 'x-api-token', 'animal', 'email', 'password'],
+  methods: ['GET', 'POST']
 };
 
-swaggerDocs.host = environment.NODE_ENV === 'production' ? `${environment.HOST_NAME}` : `localhost:${environment.PORT}`;
+swaggerDocs.host = environment.NODE_ENV?.includes('production')
+  ? `${environment.HOST_NAME}`
+  : `localhost:${environment.PORT}`;
 
 const app = express();
 
@@ -23,7 +25,7 @@ app.set('env', environment.NODE_ENV);
 app.set('port', environment.PORT);
 app.set('host', environment.HOST_NAME);
 
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(morgan('common'));
 app.use(bodyParser.urlencoded({ extended: true }));
