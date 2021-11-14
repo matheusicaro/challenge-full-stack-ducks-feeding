@@ -1,5 +1,10 @@
 /* eslint-disable @typescript-eslint/camelcase */
 
+import AnimalFeedingTable from '../table/animal-feeding.table';
+import FeedingTable from '../table/feeding.table';
+import FoodTable from '../table/food.table';
+import UserTable from '../table/user.table';
+
 /**
  * Abstraction model for join data between Animal Feeding and Feeding Table tables.
  */
@@ -17,21 +22,44 @@ export default class AnimalFeedingDTO {
   private user_id: string;
   private user_name: string;
 
-  constructor(data: any) {
-    const dataReceied = data || {};
+  constructor(
+    data: any,
+    animalFeeding?: AnimalFeedingTable,
+    user?: UserTable,
+    feeding?: FeedingTable,
+    food?: FoodTable
+  ) {
+    const dataReceived = data || {};
 
-    this.id = dataReceied['id'];
-    this.animal_quantity = dataReceied['animal_quantity'];
-    this.animal_name = dataReceied['animal_name'];
-    this.feeding_id = dataReceied['feeding_id'];
-    this.user_id = dataReceied['user_id'];
-    this.created_at = dataReceied['created_at'];
-    this.time = dataReceied['time'];
-    this.location = dataReceied['location'];
-    this.quantity_kilos = dataReceied['quantity_kilos'];
-    this.food_name = dataReceied['food_name'];
-    this.food_type = dataReceied['food_type'];
-    this.user_name = dataReceied['user_name'];
+    this.id = dataReceived['id'] ? dataReceived['id'] : animalFeeding ? animalFeeding.getId() : '';
+
+    this.user_id = dataReceived['user_id'] ? dataReceived['user_id'] : user ? user.getId() : '';
+    this.user_name = dataReceived['user_name'] ? dataReceived['user_name'] : user ? user.getName() : '';
+
+    this.feeding_id = dataReceived['feeding_id'] ? dataReceived['feeding_id'] : feeding ? feeding.getId() : '';
+    this.created_at = dataReceived['created_at'] ? dataReceived['created_at'] : feeding ? feeding.getCreatedAt() : '';
+    this.time = dataReceived['time'] ? dataReceived['time'] : feeding ? feeding.getTime() : '';
+    this.location = dataReceived['location'] ? dataReceived['location'] : feeding ? feeding.getLocation() : '';
+    this.quantity_kilos = dataReceived['quantity_kilos']
+      ? dataReceived['quantity_kilos']
+      : feeding
+      ? feeding.getQuantityKilos()
+      : '';
+
+    this.food_name = dataReceived['food_name'] ? dataReceived['food_name'] : food ? food.getName() : '';
+    this.food_type = dataReceived['food_type'] ? dataReceived['food_type'] : food ? food.getType() : '';
+
+    this.animal_quantity = dataReceived['animal_quantity']
+      ? dataReceived['animal_quantity']
+      : animalFeeding
+      ? animalFeeding.getAnimalQuantity()
+      : '';
+
+    this.animal_name = dataReceived['animal_name']
+      ? dataReceived['animal_name']
+      : animalFeeding
+      ? animalFeeding.getAnimalQuantity()
+      : '';
   }
 
   public getId(): string {

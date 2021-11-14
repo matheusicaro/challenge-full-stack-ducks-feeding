@@ -1,8 +1,10 @@
+import environment from '../../config/environment';
 import { Logger } from '../../config/logger';
 import { MESSAGES } from '../constants';
 import { ErrorResponse, HttpStatusCode } from '../exceptions';
 import DatabaseIntegration from '../integration/database.integration';
 import AnimalFeedingTableDTO from '../integration/dto/animal-feeding.dto';
+import DatabaseIntegrationMocked from '../integration/mocks/database.integration.mock';
 import AnimalFeedingTable from '../integration/table/animal-feeding.table';
 import FeedingTable from '../integration/table/feeding.table';
 import FoodTable from '../integration/table/food.table';
@@ -20,6 +22,9 @@ export default class AnimalFeedingService {
   private static INVALID_FEEDING_MESSAGE = `Animal feed is invalid to be saved. The attributes animal.name, food.name, food.type, feeding.time, 
   user_id - are required.`;
 
+  private static databaseIntegration =
+    environment.NODE_ENV === 'production/mocks' ? DatabaseIntegrationMocked : DatabaseIntegration;
+
   /**
    * Method to return animal feedings from animal informed
    *
@@ -27,7 +32,7 @@ export default class AnimalFeedingService {
    * @returns {Promise<Array<AnimalFeeding>>}: promise to return list of AnimalFeeding
    */
   public static async getFeedings(animalName: AnimalEnum): Promise<Array<AnimalFeeding>> {
-    const feedingDTOs = await DatabaseIntegration.getFullRelationFeedingBy(animalName);
+    const feedingDTOs = await this.databaseIntegration.getFullRelationFeedingBy(animalName);
 
     const buildAnimalFeeding = (dto: AnimalFeedingTableDTO): AnimalFeeding => {
       const animal = new Animal(AnimalEnum[animalName], dto.getAnimalQuantity());
@@ -58,9 +63,9 @@ export default class AnimalFeedingService {
     let newAnimalFeedingItem: AnimalFeedingTable;
 
     try {
-      await DatabaseIntegration.saveFood(foodTableItem);
-      newFeedingItem = await DatabaseIntegration.saveFeeding(feedingTableItem);
-      newAnimalFeedingItem = await DatabaseIntegration.saveAnimalFeeding(
+      await this.databaseIntegration.saveFood(foodTableItem);
+      newFeedingItem = await this.databaseIntegration.saveFeeding(feedingTableItem);
+      newAnimalFeedingItem = await this.databaseIntegration.saveAnimalFeeding(
         this.buildAnimalFeedingTableItem(newFeedingItem.getId(), animalFeeding.getUser(), animalFeeding.getAnimal())
       );
     } catch (error) {

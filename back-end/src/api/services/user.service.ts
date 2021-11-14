@@ -7,6 +7,7 @@ import jwt from 'jsonwebtoken';
 import environment from '../../config/environment';
 import AuthToken from '../models/auth-token.model';
 import { DateUtil, StringUtil } from '../utils';
+import DatabaseIntegrationMocked from '../integration/mocks/database.integration.mock';
 
 /**
  * Class for handling business rules for user services
@@ -15,6 +16,9 @@ import { DateUtil, StringUtil } from '../utils';
 export default class UserService {
   private static MESSAGE_USER_REGISTERED = 'User is already registered.';
   private static MESSAGE_INVALID_EMAIL_OR_PASSWORDD = 'Email or password is invalid.';
+
+  private static databaseIntegration =
+    environment.NODE_ENV === 'production/mocks' ? DatabaseIntegrationMocked : DatabaseIntegration;
 
   /**
    * Method to create a user in the database
@@ -25,9 +29,9 @@ export default class UserService {
    * @returns {Promise<void>}
    */
   public static async creatUser(name: string, email: string, password: string): Promise<void> {
-    const user = await DatabaseIntegration.getUser(email);
+    const user = await this.databaseIntegration.getUser(email);
 
-    if (!StringUtil.isNullOrEmpty(user.getId())) {
+    if (user && !StringUtil.isNullOrEmpty(user.getId())) {
       throw new ErrorResponse(
         `${MESSAGES.UNPROCESSABLE} ${this.MESSAGE_USER_REGISTERED}`,
         HttpStatusCode.UNPROCESSABLE
@@ -36,13 +40,9 @@ export default class UserService {
 
     const passwordEncrypted = await Security.encrypt(password);
 
-    const newUser = UserTable.builder()
-      .Email(email)
-      .Password(passwordEncrypted)
-      .Name(name)
-      .build();
+    const newUser = UserTable.builder().Email(email).Password(passwordEncrypted).Name(name).build();
 
-    DatabaseIntegration.saveUser(newUser);
+    this.databaseIntegration.saveUser(newUser);
   }
 
   /**
@@ -53,7 +53,7 @@ export default class UserService {
    * @returns {Promise<void>}
    */
   public static async getAuthToken(email: string, password: string): Promise<AuthToken> {
-    const user = await DatabaseIntegration.getUser(email);
+    const user = await this.databaseIntegration.getUser(email);
 
     const invalidUser = !user || !(await Security.isSameHash(password, user.getPassword()));
 
