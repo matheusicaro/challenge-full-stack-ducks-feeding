@@ -15,7 +15,9 @@ const corsOptions: cors.CorsOptions = {
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
 };
 
-swaggerDocs.host = environment.NODE_ENV === 'production' ? `${environment.HOST_NAME}` : `localhost:${environment.PORT}`;
+swaggerDocs.host = environment.NODE_ENV?.includes('production')
+  ? `${environment.HOST_NAME}`
+  : `localhost:${environment.PORT}`;
 
 const app = express();
 
