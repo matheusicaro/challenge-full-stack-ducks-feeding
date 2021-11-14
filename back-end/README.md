@@ -3,7 +3,7 @@
 ## Summary:
 
 1. [Intro](#intro)
-2. [Project Screen Shot](#project-screen-shot)
+2. [> Project Screen Shot](#project-screen-shot)
 3. [Installation and Setup Instructions](#installation-and-setup-instructions))
 4. [Folder Structure](#folder-structure)
 5. [Project Specifications](#project-specifications)
@@ -18,7 +18,9 @@ More details of the challenge can be accessed at [this link](https://github.com/
 
 ## Project Screen Shot
 
-... pending
+### :white_check_mark: [ [Access the application online here](https://challenge-ducks-feeding-srv.herokuapp.com/api-docs/) ] 
+
+![front-end](https://github.com/matheusicaro/challenge-full-stack-ducks-feeding/blob/master/data/back-end.gif)
 
 ## Installation and Setup Instructions
 
