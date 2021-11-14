@@ -7,7 +7,7 @@
 1. [Intro](#intro)
 2. [Challenge](#challenge)
 3. [Proposed solution and Architecture](#proposed-solution-and-architecture) 
-4. [Project Screen Shot](#project-screen-shot)
+4. [> Project Screen Shot](#project-screen-shot)
 5. [Installation and Setup Instructions](#installation-and-setup-instructions)
 
 ## Intro:
@@ -74,7 +74,10 @@ As a solution proposal, I first started working on the desired architecture and 
 
 ## Project Screen Shot
 
-... pending
+### :white_check_mark: [ [Access the application online here](https://challenge-ducks-feeding.matheusicaro.com/) ] 
+
+![front-end](https://github.com/matheusicaro/challenge-full-stack-ducks-feeding/blob/master/data/front-end.gif)
+
 
 ## Installation and Setup Instructions
 
