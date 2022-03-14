@@ -1,14 +1,22 @@
-## BUILDING THE DUCKS FEEDING WEB APPLICATION - FULL-STACK CHALLENGE. 
+## Web platform for sharing data between users - BUILDING THE DUCKS FEEDING WEB APPLICATION - FULL-STACK CHALLENGE. 
 
 [![license](https://img.shields.io/github/license/DAVFoundation/captain-n3m0.svg?style=flat-square)](https://github.com/matheusicaro/challenge-full-stack-ducks-feeding/blob/master/LICENSE)
 
+<br>
+
 ## Summary:
 
-1. [Intro](#intro)
-2. [Challenge](#challenge)
-3. [Proposed solution and Architecture](#proposed-solution-and-architecture) 
-4. [> Project Screen Shot](#project-screen-shot)
-5. [Installation and Setup Instructions](#installation-and-setup-instructions)
+- [Intro](#intro)
+- [Challenge](#challenge)
+- [Project Screen Shot](#project-screen-shot)
+- [Installation and Setup Instructions](#installation-and-setup-instructions)
+- [How it was developed](#how-it-was-developed)
+  - [Architecture](#proposed-solution-and-architecture)
+    - Application Architecture Diagram
+    - Proposed Web Application Interface Diagram
+    - Sequence Diagram
+    - Database Schema Diagram
+  - [Technologies used (stack)](#technologies-used)
 
 ## Intro:
 
@@ -16,6 +24,8 @@ Full stack challenge to develop a web application. <br>
 It was suggested to use stack with Back-end in Node.js, Front-end in React.js and PostgreSQL for the database bar.
 - [BACK-END](https://github.com/matheusicaro/challenge-full-stack-ducks-feeding/tree/master/back-end)
 - [FRONT-END](https://github.com/matheusicaro/challenge-full-stack-ducks-feeding/tree/master/front-end)
+
+---
 
 ## challenge
 
@@ -63,21 +73,13 @@ You may use any language or framework you choose. We prefer that you install the
 
 ---
 
-## Proposed solution and Architecture
-
-As a solution proposal, I first started working on the desired architecture and the diagrams that detail the project proposal can be consulted below:
-
-- [Project architecture diagram](https://github.com/matheusicaro/challenge-full-stack-ducks-feeding/tree/master/documentation)
-- [Proposed web application interface diagram](https://github.com/matheusicaro/challenge-full-stack-ducks-feeding/tree/master/documentation)
-- [Sequence diagram](https://github.com/matheusicaro/challenge-full-stack-ducks-feeding/tree/master/documentation) for rules and flow of integrations
-- [Database schema](https://github.com/matheusicaro/challenge-full-stack-ducks-feeding/tree/master/documentation) demonstrating entities and their relationships
-
 ## Project Screen Shot
 
 ### :white_check_mark: [ [Access the application online here](https://challenge-ducks-feeding.matheusicaro.com/) ] 
 
 ![front-end](https://github.com/matheusicaro/challenge-full-stack-ducks-feeding/blob/master/data/front-end.gif)
 
+---
 
 ## Installation and Setup Instructions
 
@@ -88,3 +90,47 @@ Clone down this repository. You will need `node` and `npm` installed globally on
 3. Run the **front-end** following [these steps](https://github.com/matheusicaro/challenge-full-stack-ducks-feeding/tree/master/front-end#installation-and-setup-instructions)
 4. have fun!
 
+---
+
+## How it was developed
+### Proposed solution and Architecture
+
+As a solution proposal, I first started working on the desired architecture and the diagrams that detail the project proposal can be consulted below:
+
+- [Project architecture diagram](https://github.com/matheusicaro/challenge-full-stack-ducks-feeding/tree/master/documentation)
+- [Proposed web application interface diagram](https://github.com/matheusicaro/challenge-full-stack-ducks-feeding/tree/master/documentation)
+- [Sequence diagram](https://github.com/matheusicaro/challenge-full-stack-ducks-feeding/tree/master/documentation) for rules and flow of integrations
+- [Database schema](https://github.com/matheusicaro/challenge-full-stack-ducks-feeding/tree/master/documentation) demonstrating entities and their relationships
+
+<br>
+
+### Technologies used
+
+#### FRONT-END
+
+- Used **[React and Typescript](https://www.typescriptlang.org/pt/docs/handbook/react.html)**
+- Used **[Material-UI](https://material-ui.com/)** and **[Styled Components](https://styled-components.com/)** lib for styling 
+- Used **[Redux-Saga](https://redux-saga.js.org/)** for store management along with the **[Ducks pattern](https://github.com/erikras/ducks-modular-redux)**
+- Used **[Reack Hooks](https://reactjs.org/docs/hooks-intro.html)** with stateful and stateless components.
+- Used **[Husky](https://typicode.github.io/husky/#/)** for analyzing lint tests and configurations before committing to the repository
+
+#### BACK-END
+
+- Used **[Node.js](https://nodejs.org/en/)** with **[Express](https://expressjs.com/)**
+- Used **[Jest](https://jestjs.io/)** for unit testing
+- Used **[Winston](https://typicode.github.io/husky/#/)** for the storage of the logs.
+- Used **[Axios](https://axios-http.com/)** for promises based HTTP client
+
+#### CLOUD
+
+- Used **[AWS CloudFront](https://aws.amazon.com/cloudfront/)** as a highly scalable content delivery network services.
+- Used **[AWS S3 Bucket](https://aws.amazon.com/s3/)** as a cloud object storage to static web files.
+- Used **[AWS BeanStalk](https://aws.amazon.com/elasticbeanstalk/)** as an orchestration service for deploying cloud applications.
+- Used **[AWS EC2](https://aws.amazon.com/ec2/)** as cloud instances for application availability.
+- Used **[AWS CodeDeploy](https://aws.amazon.com/codedeploy/)** as a fully managed deployment service that automates application deployments.
+- Used **[AWS CodePipeline](https://aws.amazon.com/codepipeline/)** as a continuous delivery service for the application build, test and deployment phases
+- Used **[AWS CodeCommit](https://aws.amazon.com/codecommit/)** as source control service.
+
+#### DATABASE
+
+- Used **[PostgreSQL](https://www.postgresql.org/)**

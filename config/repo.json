@@ -1,0 +1,50 @@
+{
+  "profile": {
+    "pt": {
+      "kind": "Open Source",
+      "name": "Plataforma Web para compartilhamento de dados entre usuários",
+      "intro": "Projeto full stack para desenvolvimento de uma aplicação web para compartilhamento simultâneo de dados entre usuários com cadastro e login para inserção e, também desenvolvimento de diagramas de aplicação, banco de dados, CI/CD e implantação na AWS."
+    },
+    "fr": {
+      "kind": "Open Source",
+      "name": "Plateforme Web de partage de données entre utilisateurs",
+      "intro": "Projet full stack pour le développement d'une application web de partage simultané de données entre utilisateurs avec inscription et login pour insertion et également développement de schémas d'application, base de données, CI/CD et déploiement dans AWS."
+    },
+    "en": {
+      "kind": "Open Source",
+      "name": "Web platform for sharing data between users",
+      "intro": "Full stack project for the development of a web application for simultaneous sharing of data between users with registration and login for insertion and also development of application diagrams, database, CI/CD and deployment in AWS."
+    },
+    "es": {
+      "kind": "Open Source",
+      "name": "Plataforma web para compartir datos entre usuarios",
+      "intro": "Proyecto full stack para el desarrollo de una aplicación web para el intercambio simultáneo de datos entre usuarios con registro e inicio de sesión para la inserción y también desarrollo de diagramas de aplicación, base de datos, CI/CD y despliegue en AWS."
+    }
+  },
+  "stack": {
+    "frontend": [
+      {
+        "name": "React",
+        "tags": ["TypeScript", "Material-UI", "Styled-components", "Redux", "Redux-Saga", "Hooks"]
+      }
+    ],
+    "backend": [
+      {
+        "name": "Node.js",
+        "tags": ["TypeScript", "Express", "Jest", "Husky", "eslint"]
+      }
+    ],
+    "cloud": [
+      {
+        "name": "Amazon AWS",
+        "tags": ["AWS CloudFront", "AWS S3 Bucket", "AWS Elastic Beanstalk", "AWS CodeDeploy", "AWS CodePipeline", "AWS CodeCommit", "AWS EC2 instance"]
+      }
+    ],
+    "database": [
+      {
+        "name": "PostgreSQL",
+        "tags": []
+      }
+    ]
+  }
+}

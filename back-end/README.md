@@ -58,11 +58,13 @@ Clone down this repository. You will need `node` and `npm` installed globally on
 
 ## Project Specifications
 
-- Used [Node.js](https://nodejs.org/en/) with [express](https://expressjs.com/)
-- Used [Jest](https://jestjs.io/) for unit testing
-- Used [Winston](https://typicode.github.io/husky/#/) for the storage of the logs.
-- Used [Axios](https://axios-http.com/) for promises based HTTP client
+#### BACK-END
 
+- Used **[Node.js](https://nodejs.org/en/)** with **[Express](https://expressjs.com/)**.
+- Used **[Jest](https://jestjs.io/)** for unit testing.
+- Used **[Winston](https://typicode.github.io/husky/#/)** for the storage of the logs.
+- Used **[Axios](https://axios-http.com/)** for promises based HTTP client.
+- Used **[PostgreSQL](https://www.postgresql.org/)** as an object-relational database.
 ## To Do List:
 
 Due to the availability of time to implement the solution for the proposed challenge that was 12 hours, some tasks that are not mandatory for the challenge, but essential to deliver the solution, are pending below as a suggestion for better futures:

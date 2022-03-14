@@ -2,8 +2,8 @@
 1. [Project architecture diagram](#project-architecture-diagram)
 2. [Challenge](#proposed-web-application-interface-diagram)
 3. [Sequence diagram](#sequence-diagram)
-4. [Database schema](#database-schema) 
-    4.1. [Queries and table initialization](queries-and-table-initialization)
+4. [Database schema](#database-schema) <br>
+    4.1. [Queries and table initialization](#queries-and-table-initialization)
 
 <br>
 <br>
@@ -27,14 +27,14 @@
 ### Queries and table initialization
 
 CREATE DOMAIN INDEX FOR EDITING IN CASCADE OF ENTRY FORMAT
-```
+```sql
 CREATE DOMAIN name_domain varchar(150)
 CREATE DOMAIN kilos_domain NUMERIC(18,3)
 CREATE DOMAIN email_domain varchar(100)
 ```
 
 CREATE A FOOD TABLE AND INSERT AN EXAMPLE
-```
+```sql
 CREATE TABLE food (
 	"name" name_domain PRIMARY KEY,
 	"type" VARCHAR(50) NOT NULL,
@@ -49,7 +49,7 @@ VALUES
 ```
 
 CREATE FEEDING TABLE AND INSERTION EXAMPLE
-```
+```sql
 CREATE TABLE feeding (
 	"id" SERIAL PRIMARY KEY,
 	created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
@@ -67,7 +67,7 @@ VALUES
 ```
 
 CREATE ANIMAL TABLE AND INSERTION EXAMPLE
-```
+```sql
 CREATE TABLE animal (
 	"name" name_domain PRIMARY KEY
 )
@@ -76,7 +76,7 @@ VALUES ('DUCK')
 ```
 
 CREATE USER TABLE AND INSERT EXAMPLE
-```
+```sql
 CREATE TABLE "user" (
 	"email" email_domain PRIMARY KEY,
 	"name" name_domain,
@@ -89,7 +89,7 @@ VALUES ('freshworks@matheusicaro.com', 'freshworks', 'Matheus Icaro Martins')
 ```
 
 CREATE ENCLOSURE TABLE BETWEEN ANIMAL AND FEEDING AND INSERTION EXAMPLE
-```
+```sql
 CREATE TABLE animal_feeding (
 	"id" SERIAL PRIMARY KEY,
 	animal_quantity INT DEFAULT 0,
