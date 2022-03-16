@@ -8,7 +8,7 @@
 
 - [Intro](#intro)
 - [Challenge](#challenge)
-- [Project Screen Shot](#project-screen-shot)
+- **[Project Screen Shot](#project-screen-shot)**
 - [Installation and Setup Instructions](#installation-and-setup-instructions)
 - [How it was developed](#how-it-was-developed)
   - [Architecture](#proposed-solution-and-architecture)
