@@ -116,7 +116,9 @@ As a solution proposal, I first started working on the desired architecture and 
 
 #### BACK-END
 
-- Used **[Node.js](https://nodejs.org/en/)** with **[Express](https://expressjs.com/)**
+- Used **[Node.js](https://nodejs.org/en/)** with:
+  - **[TypeScript](https://www.typescriptlang.org/)**
+  - **[Express](https://expressjs.com/)**
 - Used **[Jest](https://jestjs.io/)** for unit testing
 - Used **[Winston](https://typicode.github.io/husky/#/)** for the storage of the logs.
 - Used **[Axios](https://axios-http.com/)** for promises based HTTP client
