@@ -79,13 +79,13 @@
       "Redux-Saga ",
       "Hooks ",
       "AmazonAWS",
-      "AWS-CloudFront",
-      "AWS-S3Bucket",
-      "AWS-ElasticBeanstalk",
-      "AWS-CodeDeploy",
-      "AWS-CodePipeline",
-      "AWS-CodeCommit",
-      "AWS-EC2Instance"
+      "AWS CloudFront",
+      "AWS S3 Bucket",
+      "AWS Elastic Beanstalk",
+      "AWS CodeDeploy",
+      "AWS CodePipeline",
+      "AWS CodeCommit",
+      "AWS EC2 Instance"
     ]
   }
 }
