@@ -67,7 +67,7 @@
         ]
       }
     ],
-    "tagsForSearch": [
+    "tags": [
       "React",
       "Node.js",
       "PostgreSQL",
@@ -79,13 +79,13 @@
       "Redux-Saga",
       "Hooks",
       "AmazonAWS",
-      "AWS CloudFront",
-      "AWS S3 Bucket",
-      "AWS Elastic Beanstalk",
-      "AWS CodeDeploy",
-      "AWS CodePipeline",
-      "AWS CodeCommit",
-      "AWS EC2 Instance"
+      "AWS-CloudFront",
+      "AWS-S3-Bucket",
+      "AWS-Elastic-Beanstalk",
+      "AWS-CodeDeploy",
+      "AWS-CodePipeline",
+      "AWS-CodeCommit",
+      "AWS-EC2-Instance"
     ]
   }
 }
