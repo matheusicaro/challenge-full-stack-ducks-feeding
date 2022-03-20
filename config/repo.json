@@ -86,6 +86,7 @@
     "AWS-CodeDeploy",
     "AWS-CodePipeline",
     "AWS-CodeCommit",
-    "AWS-EC2-Instance"
+    "AWS-EC2-Instance",
+    "Full-stack", "Front-end", "Back-end"
   ]
 }
