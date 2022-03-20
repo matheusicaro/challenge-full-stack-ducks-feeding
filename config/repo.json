@@ -78,14 +78,9 @@
     "Styled-components",
     "Redux",
     "JavaScript",
-    "AmazonAWS",
-    "AWS-CloudFront",
-    "AWS-S3-Bucket",
-    "AWS-Elastic-Beanstalk",
-    "AWS-CodeDeploy",
-    "AWS-CodePipeline",
-    "AWS-CodeCommit",
-    "AWS-EC2-Instance",
-    "Full-stack", "Front-end", "Back-end"
+    "Amazon AWS",
+    "Full-stack", 
+    "Front-end", 
+    "Back-end"
   ]
 }
