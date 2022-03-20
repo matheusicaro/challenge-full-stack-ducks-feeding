@@ -66,26 +66,26 @@
           "Hooks"
         ]
       }
-    ],
-    "tags": [
-      "React",
-      "Node.js",
-      "PostgreSQL",
-      "TypeScript",
-      "Express",
-      "Material-UI",
-      "Styled-components",
-      "Redux",
-      "Redux-Saga",
-      "Hooks",
-      "AmazonAWS",
-      "AWS-CloudFront",
-      "AWS-S3-Bucket",
-      "AWS-Elastic-Beanstalk",
-      "AWS-CodeDeploy",
-      "AWS-CodePipeline",
-      "AWS-CodeCommit",
-      "AWS-EC2-Instance"
     ]
-  }
+  },
+  "tags": [
+    "React",
+    "Node.js",
+    "PostgreSQL",
+    "TypeScript",
+    "Express",
+    "Material-UI",
+    "Styled-components",
+    "Redux",
+    "Redux-Saga",
+    "Hooks",
+    "AmazonAWS",
+    "AWS-CloudFront",
+    "AWS-S3-Bucket",
+    "AWS-Elastic-Beanstalk",
+    "AWS-CodeDeploy",
+    "AWS-CodePipeline",
+    "AWS-CodeCommit",
+    "AWS-EC2-Instance"
+  ]
 }
